@@ -1,0 +1,166 @@
+/* src/styles/Home.css */
+.home-section {
+  min-height: calc(100vh - 8rem);
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.home-content-container {
+  display: flex;
+  flex-direction: row; /* Lado a lado em desktop */
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  gap: 2.5rem; /* Espaçamento entre texto e imagem */
+  width: 100%;
+}
+
+.home-text-content {
+  flex: 1; /* Ocupa 50% do espaço */
+  text-align: left; /* Texto alinhado à esquerda */
+}
+
+/* --- MUDANÇAS AQUI --- */
+.home-title {
+  font-family: "Fira Code", monospace; /* Fonte estilo código */
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+
+  /* Adicionado para alinhar o texto e o cursor */
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+}
+
+.home-print-text {
+  /* Animação de pulsação (movida do .home-print-f) */
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.home-print-f {
+  color: var(--color-emerald-light);
+  /* A animação 'pulse' foi movida para o span .home-print-text */
+}
+
+/* Novo: O cursor piscando */
+.home-caret {
+  display: inline-block;
+  width: 10px; /* Largura do cursor */
+  height: 3.5rem; /* Altura (baseada no font-size do .home-title) */
+  background-color: var(--color-emerald-light);
+  margin-left: 10px; /* Espaço entre o texto e o cursor */
+  animation: blink 1s infinite step-end; /* Animação de piscar */
+}
+/* --- FIM DAS MUDANÇAS --- */
+
+.home-subtitle {
+  font-size: 2.2rem;
+  color: var(--color-gray-light);
+  font-weight: 600;
+}
+
+.home-image-container {
+  flex: 1; /* Ocupa 50% do espaço */
+  display: flex;
+  justify-content: flex-end; /* Alinha a imagem à direita */
+  align-items: center;
+}
+
+.home-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+}
+
+/* Animação de pulsação (para o texto) */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Nova: Animação de piscar (para o cursor) */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* --- Responsividade (com ajustes para o cursor) --- */
+@media (max-width: 992px) {
+  .home-title {
+    font-size: 3rem;
+  }
+  .home-subtitle {
+    font-size: 1.75rem;
+  }
+  .home-caret {
+    height: 3rem; /* Ajusta altura do cursor */
+  }
+}
+
+@media (max-width: 768px) {
+  .home-section {
+    padding: 2rem 1rem;
+    min-height: unset;
+  }
+
+  .home-content-container {
+    flex-direction: column; /* Empilha imagem e texto em mobile */
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .home-text-content {
+    text-align: center; /* Centraliza o texto em mobile */
+  }
+
+  .home-image-container {
+    justify-content: center; /* Centraliza a imagem em mobile */
+    order: -1; /* Coloca a imagem ACIMA do texto em mobile */
+    margin-bottom: 1.5rem;
+  }
+
+  .home-title {
+    font-size: 2.5rem;
+    justify-content: center; /* Centraliza o texto e cursor */
+  }
+
+  .home-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .home-image {
+    max-width: 90%;
+  }
+
+  .home-caret {
+    height: 2.5rem; /* Ajusta altura do cursor */
+  }
+}
+
+@media (max-width: 480px) {
+  .home-title {
+    font-size: 2rem;
+  }
+  .home-caret {
+    height: 2rem; /* Ajusta altura do cursor */
+  }
+}

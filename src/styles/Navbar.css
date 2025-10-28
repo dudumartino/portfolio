@@ -1,0 +1,308 @@
+/* src/styles/Navbar.css */
+.navbar {
+  position: sticky;
+  top: 0.5rem;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-medium);
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap; /* Garante que a marca não quebre a linha */
+}
+
+.navbar-brand:hover {
+  color: var(--color-emerald-light);
+}
+
+/* Container para toda a direita */
+.navbar-right-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espaço entre os links e as novas ações */
+}
+
+.navbar-links-desktop {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navbar-button {
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap; /* Evita que o texto quebre */
+}
+
+.navbar-button:hover {
+  background-color: var(--color-emerald-dark);
+}
+
+/* Estilos para as Ações (CV, Tema, Idioma) */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Espaço entre os novos botões */
+  border-left: 1px solid var(--color-gray-medium); /* Linha divisória */
+  padding-left: 1rem;
+}
+
+.cv-button {
+  background-color: var(--color-emerald-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem; /* Um pouco menor para caber */
+  padding: 0.6rem 0.8rem; /* Um pouco menor */
+}
+
+.cv-button:hover {
+  background-color: var(--color-emerald-light);
+  color: var(--color-black);
+}
+
+.theme-switch {
+  background-color: var(--color-gray-dark);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem; /* Tamanho do emoji */
+  transition: all 0.3s ease;
+}
+
+.theme-switch:hover {
+  background-color: var(--color-gray-medium);
+  transform: scale(1.1);
+}
+
+.lang-selector {
+  position: relative;
+}
+
+.lang-button {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  border-radius: var(--border-radius-md);
+  transition: background-color 0.3s ease;
+  /* --- ALTERAÇÃO AQUI --- */
+  font-size: 1.8rem; /* Tamanho do emoji/texto da bandeira principal */
+  line-height: 1; /* Alinhamento vertical */
+}
+
+.lang-button .flag-emoji {
+  font-size: inherit; /* Herda o tamanho do botão */
+  line-height: 1;
+}
+
+.lang-button:hover {
+  background-color: var(--color-gray-dark);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 120%; /* Abaixo do botão */
+  right: 0;
+  background-color: var(--color-gray-dark);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 1010;
+  width: 160px; /* Largura fixa */
+}
+
+.lang-dropdown button {
+  background-color: transparent;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-md);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* Espaço entre bandeira e texto */
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+/* --- ALTERAÇÃO AQUI --- */
+.lang-dropdown button .flag-emoji {
+  font-size: 1.2rem; /* Tamanho do emoji/texto da bandeira no dropdown */
+  line-height: 1;
+}
+
+.lang-dropdown button:hover {
+  background-color: var(--color-emerald-dark);
+}
+
+/* --- Menu Mobile --- */
+.navbar-toggle {
+  display: none;
+  z-index: 1001;
+}
+
+.navbar-toggle-button {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.navbar-mobile-overlay {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo transparente */
+  backdrop-filter: blur(10px); /* Efeito de vidro fosco mais forte */
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.navbar-mobile-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.navbar-mobile-content {
+  background-color: rgba(0, 0, 0, 0.8); /* Fundo mais sólido para o conteúdo */
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 350px;
+}
+
+.navbar-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.cv-button-mobile {
+  font-size: 1.2rem;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: var(--color-emerald-dark);
+}
+
+.navbar-mobile-actions .lang-selector {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.navbar-mobile-actions .lang-button {
+  font-size: 2.5rem; /* Bandeira maior no mobile */
+  background-color: var(--color-gray-dark);
+  padding: 0.5rem;
+}
+.navbar-mobile-actions .lang-dropdown {
+  position: relative; /* Não é mais absoluto */
+  top: auto;
+  right: auto;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.navbar-mobile-divider {
+  border: none;
+  border-top: 1px solid var(--color-gray-medium);
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.navbar-mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  width: 100%;
+  align-items: center;
+}
+
+.navbar-mobile-button {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.navbar-mobile-button:hover {
+  background-color: var(--color-emerald-dark);
+}
+
+/* --- BREAKPOINT IMPORTANTE --- */
+/* Menu hambúrguer aparece em 992px (tablets) */
+@media (max-width: 992px) {
+  .navbar-links-desktop,
+  .navbar-actions {
+    display: none; /* Esconde links e ações do desktop */
+  }
+  .navbar-toggle {
+    display: block; /* Mostra botão de menu */
+  }
+  .navbar-mobile-overlay {
+    display: flex;
+    /* As outras propriedades (visibility, opacity) são controladas pelo .is-open */
+  }
+}
+
+/* Ajuste fino para telas menores */
+@media (max-width: 768px) {
+  .navbar {
+    margin: 0.5rem 0.5rem;
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+}

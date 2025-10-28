@@ -1,0 +1,63 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* O 'main' é o container para todas as seções */
+main {
+  flex-grow: 1; /* Faz o 'main' crescer para ocupar o espaço disponível */
+  width: 100%;
+  max-width: 1200px; /* Limita a largura do conteúdo principal */
+  margin: 0 auto; /* Centraliza o 'main' */
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-gray-light);
+  font-size: 0.9rem;
+  margin-top: auto; /* Garante que o footer fique no final da página */
+}
+
+/* Estilos de seção comuns */
+section {
+  /* Espaçamento interno (vertical, horizontal) */
+  padding: 6rem 1.5rem;
+  min-height: 80vh; /* Altura mínima para cada "página" */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ocupa toda a largura do 'main' */
+  box-sizing: border-box; /* Inclui padding e borda na largura total */
+}
+
+/* Título de seção padrão */
+section h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: white;
+}
+
+/* Responsividade geral para seções */
+@media (max-width: 768px) {
+  section {
+    padding: 4rem 1rem;
+    min-height: unset; /* Remove min-height em mobile */
+  }
+
+  section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section h2 {
+    font-size: 1.8rem;
+  }
+}

@@ -1,13 +1,73 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* src/index.css */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap");
+
+/* Definição de variáveis de cor para o projeto */
+:root {
+  --color-black: #000;
+  --color-military-green: #3a5040; /* Verde militar mais escuro */
+  --color-emerald-light: #6ee7b7; /* Um verde mais claro para detalhes */
+  --color-emerald-dark: #065f46; /* Um verde mais escuro para hover */
+  --color-gray-dark: #1f2937;
+  --color-gray-medium: #4b5563;
+  --color-gray-light: #d1d5db;
+  --border-radius-lg: 10px;
+  --border-radius-md: 5px;
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 10px 15px rgba(0, 0, 0, 0.2);
+  --shadow-emerald: 0 4px 15px rgba(6, 95, 70, 0.4);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Reset e Estilos de Base */
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* O gradiente de fundo que você pediu */
+  background: linear-gradient(
+    to top,
+    var(--color-black),
+    var(--color-military-green)
+  );
+  color: white;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Evita scroll horizontal */
+}
+
+/* Estilo de seleção de texto */
+::selection {
+  background-color: var(--color-emerald-light);
+  color: var(--color-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Reset básico para links e botões */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font-family: inherit; /* Garante que o botão use a fonte do body */
 }

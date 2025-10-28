@@ -1,0 +1,91 @@
+/* src/styles/Contato.css */
+.contato-section {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 6rem 1rem;
+  min-height: 50vh; /* Altura mínima menor que outras seções */
+}
+
+.contato-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contato-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.contato-intro {
+  font-size: 1.2rem;
+  color: var(--color-gray-light);
+  margin-bottom: 3.5rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem; /* --- ALTERADO: Diminuí o espaço para caber 3 ícones --- */
+}
+
+.social-icon-link {
+  color: var(--color-gray-light);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon-link:hover {
+  transform: scale(1.1); /* Efeito de zoom no hover */
+}
+
+/* --- NOVO: Cores de hover específicas --- */
+.linkedin-icon:hover {
+  color: #0a66c2; /* Cor do LinkedIn */
+}
+
+.github-icon:hover {
+  color: #ffffff; /* Cor do GitHub (branco) */
+}
+
+.whatsapp-icon:hover {
+  color: #25d366; /* Cor do WhatsApp */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .contato-section {
+    padding: 4rem 1rem;
+  }
+  .contato-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .contato-intro {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .social-icons {
+    gap: 2rem;
+  }
+  .social-icon-link svg {
+    width: 40px; /* Reduz o tamanho dos ícones */
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contato-title {
+    font-size: 1.8rem;
+  }
+  .contato-intro {
+    font-size: 0.9rem;
+  }
+  .social-icons {
+    gap: 1.5rem;
+  }
+  .social-icon-link svg {
+    width: 36px;
+    height: 36px;
+  }
+}

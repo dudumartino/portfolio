@@ -1,0 +1,160 @@
+/* src/styles/Skills.css */
+.skills-section {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 6rem 1.5rem;
+}
+
+.skills-container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* O <h2> "Skills" usa o estilo global de 'section h2' */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas em desktop */
+  gap: 3rem;
+}
+
+.skills-category {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills-category-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  color: var(--color-emerald-light);
+}
+
+/* --- Soft Skills Cards --- */
+.soft-skills-cards {
+  display: grid;
+  /* Cria 2 colunas, se couber */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  flex-grow: 1; /* Ocupa espaço disponível */
+}
+
+.soft-skill-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-light);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.soft-skill-card:hover {
+  transform: translateY(-5px); /* Efeito de levantar */
+  box-shadow: var(--shadow-emerald); /* Sombra verde */
+}
+
+.soft-skill-icon {
+  color: var(--color-emerald-light);
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.soft-skill-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.soft-skill-description {
+  font-size: 0.95rem;
+  color: var(--color-gray-light);
+}
+
+/* --- Hard Skills --- */
+.hard-skills-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 2.5rem;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-light);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1; /* Ocupa espaço disponível */
+}
+
+.hard-skills-intro {
+  font-size: 1.1rem;
+  color: var(--color-gray-light);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.hard-skills-icons {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os ícones quebrem a linha */
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.hard-skill-icon-placeholder {
+  background-color: var(--color-gray-dark);
+  color: var(--color-gray-light);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hard-skill-icon-placeholder:hover {
+  background-color: var(--color-emerald-dark);
+  color: white;
+}
+
+.hard-skills-note {
+  font-size: 0.8rem;
+  color: var(--color-gray-medium);
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Responsividade do Skills */
+@media (max-width: 992px) {
+  .skills-category-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 4rem 1rem;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr; /* Uma coluna em mobile */
+    gap: 3rem;
+  }
+  .skills-category-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .soft-skills-cards {
+    /* 2 colunas mesmo em telas menores, se couber */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .soft-skills-cards {
+    /* Força 1 coluna em telas muito pequenas */
+    grid-template-columns: 1fr;
+  }
+}
