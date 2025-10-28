@@ -1,286 +1,227 @@
-/* src/styles/Navbar.css (REFEITO) */
-
-/* --- Variáveis (do index.css, mas úteis para referência) ---
-:root {
-  --color-emerald-light: #6ee7b7;
-  --color-emerald-dark: #065f46;
-  --color-gray-dark: #1f2937;
-  --color-gray-medium: #4b5563;
-  --border-radius-lg: 10px;
-  --border-radius-md: 5px;
-}
-------------------------------------------------------------- */
+/* src/styles/Navbar.css */
 
 /* --- Base da Navbar --- */
 .navbar {
-  position: sticky;
-  top: 0.5rem;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  margin: 0.5rem 1rem;
-  padding: 0.75rem 1.5rem; /* Padding vertical, horizontal */
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-medium);
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between; /* ESQUERDA | CENTRO | DIREITA */
-  align-items: center;
-}
-
-/* --- Esquerda: EM (Monograma) --- */
-.navbar-brand-mono {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--color-emerald-light); /* Cor do highlight */
-  cursor: pointer;
-  line-height: 1;
-}
-
-/* --- Meio: Links Desktop --- */
-.navbar-links-desktop {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.navbar-link-button {
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--border-radius-md);
-  font-weight: 600;
-  color: white;
-  font-size: 1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.navbar-link-button:hover {
-  background-color: var(--color-emerald-dark); 
-}
-
-/* --- Direita: Botão Hambúrguer --- */
-.navbar-toggle {
-  display: block; /* O Hambúrguer agora está SEMPRE visível */
-  z-index: 1001; /* Fica acima do overlay */
-}
-
-.navbar-toggle-button {
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
-  display: flex; /* Para centralizar o ícone */
-  align-items: center;
-  justify-content: center;
-}
-
-/* --- Menu Overlay (Aberto) --- */
-.navbar-mobile-overlay {
-  /* Escondido por padrão */
-  display: none; 
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); 
-  backdrop-filter: blur(10px); 
-  
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.3s ease-in-out;
-  z-index: 1000; 
-}
-
-/* Classe que o JS adiciona para MOSTRAR o menu */
-.navbar-mobile-overlay.is-open {
-  display: flex; 
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* Conteúdo de dentro do Overlay */
-.navbar-mobile-content {
-  background-color: rgba(0, 0, 0, 0.85); 
-  padding: 2rem;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-medium);
-  display: flex;
-  flex-direction: column;
-  align-items: stretch; /* Faz os itens preencherem a largura */
-  width: 90%;
-  max-width: 350px;
-}
-
-/* --- 1. Ações (CV, Tema, Idioma) no Overlay --- */
-.navbar-mobile-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem; /* Espaço entre as ações */
-  width: 100%;
-}
-
-.navbar-action-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--border-radius-md);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: white;
-  transition: background-color 0.3s ease;
-}
-
-.cv-button {
-  background-color: var(--color-emerald-dark);
-}
-.cv-button:hover {
-  background-color: var(--color-emerald-light);
-  color: var(--color-black);
-}
-
-.navbar-action-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.1rem;
-}
-
-.theme-switch {
-  background-color: var(--color-gray-dark);
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem; 
-  transition: all 0.3s ease;
-}
-.theme-switch:hover {
-  background-color: var(--color-gray-medium);
-}
-
-.lang-selector-inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.lang-button {
-  background-color: var(--color-gray-dark);
-  padding: 0.5rem;
-  border-radius: var(--border-radius-md);
-  font-size: 1.8rem; 
-  line-height: 1;
-  display: flex;
-  align-items: center;
-}
-.lang-button .flag-emoji {
-  font-size: inherit; 
-}
-
-.lang-dropdown {
-  position: absolute;
-  top: 110%; /* Posição no overlay */
-  right: 0;
-  background-color: var(--color-gray-dark);
-  border-radius: var(--border-radius-md);
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  color: white;
+  
+  position: sticky;
+  top: 0.5rem;
+  margin: 0.5rem 1rem;
+  border-radius: var(--border-radius-lg);
+  z-index: 1000;
   box-shadow: var(--shadow-medium);
-  padding: 0.5rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* --- Esquerda: Logo --- */
+.logo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-emerald-light);
+  cursor: pointer;
+}
+
+/* --- Centro: Links Desktop --- */
+.navbar-center {
+  display: flex;
+  gap: 1.5rem;
+}
+.navbar-center button {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.navbar-center button:hover {
+  color: var(--color-emerald-light);
+}
+
+/* --- Direita: Hambúrguer --- */
+.navbar-right { position: relative; }
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Menu Dropdown --- */
+.menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 3.5rem; 
+  right: 0;
+  background-color: rgba(31, 41, 55, 0.95); /* (var(--color-gray-dark)) */
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  min-width: 220px; 
+}
+.menu-dropdown.open { display: flex; }
+
+/* --- Conteúdo do Dropdown --- */
+.mobile-links-section {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  z-index: 1010;
-  width: 180px; /* Mais largo */
+  gap: 1rem;
 }
-.lang-dropdown button {
-  background-color: transparent;
+.mobile-links-section button {
+  background: none;
+  border: none;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: var(--border-radius-md);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
   text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem; 
-  transition: background-color 0.3s ease;
-  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
-.lang-dropdown button .flag-emoji {
-  font-size: 1.2rem; 
-}
-.lang-dropdown button:hover {
+.mobile-links-section button:hover {
   background-color: var(--color-emerald-dark);
 }
 
-/* Divisor no Overlay */
-.navbar-mobile-divider {
+.mobile-divider {
   border: none;
   border-top: 1px solid var(--color-gray-medium);
-  width: 100%;
-  margin: 2rem 0;
+  margin: 0.5rem 0;
 }
 
-/* --- 2. Links de Navegação no Overlay --- */
-.navbar-mobile-links {
+.mobile-actions-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
+}
+
+.cv-button {
+  background-color: var(--color-emerald-light);
+  color: #1f2937; /* Texto escuro no botão verde */
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
   text-align: center;
-  width: 100%;
-  align-items: center;
-}
-
-.navbar-mobile-button {
-  font-size: 2rem;
   font-weight: 600;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+.cv-button:hover {
+  background-color: #059669; 
   color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: var(--border-radius-md);
-  transition: background-color 0.3s ease;
-  width: 100%;
 }
 
-.navbar-mobile-button:hover {
-  background-color: var(--color-emerald-dark);
+.action-item-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-
-/* --- Responsividade --- */
-/* (Telas de tablet e menores) */
-@media (max-width: 992px) {
-  .navbar-links-desktop {
-    display: none; /* Esconde os links do meio */
-  }
-  
-  .navbar-container {
-    /* No mobile, só temos EM (esquerda) e Hambúrguer (direita) */
-    justify-content: space-between; 
-  }
+.switch-container {
+  cursor: pointer;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
-/* (Telas de celular) */
+.language-select {
+  border: 1px solid var(--color-gray-medium);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  background: var(--color-gray-dark);
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem; 
+}
+
+/* --- Media Query --- */
 @media (max-width: 768px) {
+  .navbar-center {
+    display: none; 
+  }
   .navbar {
     margin: 0.5rem 0.5rem;
     padding: 0.75rem 1rem;
   }
-  .navbar-brand-mono {
-    font-size: 1.8rem;
-  }
-  .navbar-mobile-button {
-    font-size: 1.8rem;
-  }
+}
+
+/*
+ ==========================================
+ === ATUALIZAÇÃO PARA O MODO CLARO (FINAL) ===
+ ==========================================
+*/
+body.light-mode .navbar {
+  background-color: rgba(255, 255, 255, 0.7); /* Fundo branco/blur */
+  color: var(--color-text); /* Texto escuro */
+  box-shadow: var(--shadow-light);
+}
+
+body.light-mode .navbar-center button {
+  color: var(--color-text-faded); /* Links do centro em cinza escuro */
+}
+body.light-mode .navbar-center button:hover {
+  color: var(--color-text); /* Links ficam pretos no hover */
+}
+
+body.light-mode .hamburger {
+  color: var(--color-text); /* Ícone hambúrguer escuro */
+}
+
+body.light-mode .menu-dropdown {
+  background-color: rgba(255, 255, 255, 0.95); /* Fundo do menu branco */
+  box-shadow: var(--shadow-medium);
+}
+
+body.light-mode .mobile-links-section button {
+  color: var(--color-text-faded); /* Links do menu escuros */
+}
+body.light-mode .mobile-links-section button:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Fundo cinza claro no hover */
+  color: var(--color-text);
+}
+
+body.light-mode .mobile-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Divisor claro */
+}
+
+body.light-mode .action-item-mobile {
+  color: var(--color-text); /* Texto das ações escuro */
+}
+
+body.light-mode .cv-button {
+  background-color: var(--color-emerald-dark); /* Botão CV Verde Escuro */
+  color: white; /* Texto branco */
+}
+body.light-mode .cv-button:hover {
+  background-color: #064e3b; /* Verde mais escuro */
+}
+
+body.light-mode .language-select {
+  border: 1px solid #ccc;
+  background: #f9fafb; /* Fundo do select claro */
+  color: var(--color-text); /* Texto do select escuro */
 }

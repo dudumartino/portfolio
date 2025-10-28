@@ -1,154 +1,93 @@
 // src/components/Navbar.jsx
-import React, { useState } from 'react';
-// CORREÇÃO 1: 'FaWhatsapp' foi removido daqui.
-import { Menu, X, Download } from 'lucide-react';
-import '../styles/Navbar.css'; // Importa o CSS para a Navbar
+import React, { useState, useEffect } from "react";
+import { Menu, X, Download } from "lucide-react"; // Importamos os ícones que vamos usar
+import "../styles/Navbar.css";
 
+// 1. ADAPTADO: Recebe 'onScrollTo' como prop
 const Navbar = ({ onScrollTo }) => {
-  const [menuAberto, setMenuAberto] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); 
-  const [isLangOpen, setIsLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState('br');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false); // false = dark (padrão), true = light
 
-  const navLinks = [
-    { id: 'sobre', nome: 'Sobre Mim' },
-    { id: 'skills', nome: 'Habilidades' }, 
-    { id: 'projetos', nome: 'Projetos' },
-    { id: 'contato', nome: 'Contato' },
-  ];
+  useEffect(() => {
+    // Adiciona/remove a classe 'light-mode' no body
+    // Nosso CSS em index.css vai cuidar do que isso significa
+    document.body.className = darkMode ? "light-mode" : "";
+  }, [darkMode]);
 
+  // Função helper para fechar o menu ao clicar
   const handleNavClick = (id) => {
     onScrollTo(id);
-    setMenuAberto(false); // Fecha o menu ao clicar em um link
+    setIsMenuOpen(false);
   };
-
-  const getFlagEmoji = (lang) => {
-    if (lang === 'en') return '🇺🇸';
-    if (lang === 'es') return '🇪🇸';
-    return '🇧🇷'; 
-  };
-
-  const handleLangChange = (lang) => {
-    setSelectedLang(lang);
-    setIsLangOpen(false); 
-  };
-
-  const handleThemeToggle = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  // Componente interno para as AÇÕES (CV, Tema, Idioma)
-  const NavbarActions = ({ isMobile = false }) => (
-    <div className={isMobile ? "navbar-mobile-actions" : "navbar-actions-desktop"}>
-      {/* Botão Baixar CV */}
-      <a 
-        href="/seu-cv.pdf" 
-        target="_blank"
-        rel="noopener noreferrer"
-        className="navbar-action-button cv-button"
-      >
-        <Download size={20} />
-        Baixar CV
-      </a>
-
-      {/* Switch de Tema */}
-      <div className="navbar-action-item">
-        <span>Tema</span>
-        <button 
-          className="theme-switch" 
-          onClick={handleThemeToggle}
-          aria-label="Mudar tema"
-        >
-          {isDarkMode ? '☀️' : '🌙'}
-        </button>
-      </div>
-
-      {/* Seletor de Idioma */}
-      <div className="navbar-action-item lang-selector">
-        <span>Idioma</span>
-        <div className="lang-selector-inner">
-          <button 
-            className="lang-button" 
-            onClick={() => setIsLangOpen(!isLangOpen)}
-            aria-label="Mudar idioma"
-          >
-            <span className="flag-emoji">{getFlagEmoji(selectedLang)}</span>
-          </button>
-          {isLangOpen && (
-            <div className="lang-dropdown">
-              <button onClick={() => handleLangChange('br')}>
-                <span className="flag-emoji">🇧🇷</span> Português
-              </button>
-              <button onClick={() => handleLangChange('en')}>
-                <span className="flag-emoji">🇺🇸</span> English
-              </button>
-              <button onClick={() => handleLangChange('es')}>
-                <span className="flag-emoji">🇪🇸</span> Español
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <nav className="navbar">
-      <div className="navbar-container">
-        {/* Esquerda: EM (Verde) */}
-        <span
-          className="navbar-brand-mono"
-          onClick={() => onScrollTo('home')}
-        >
+      {/* Esquerda: Logo EM */}
+      <div className="navbar-left">
+        <span className="logo" onClick={() => handleNavClick("home")}>
           EM
         </span>
-
-        {/* Meio: Links Desktop */}
-        <div className="navbar-links-desktop">
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => handleNavClick(link.id)}
-              className="navbar-link-button"
-            >
-              {link.nome}
-            </button>
-          ))}
-        </div>
-
-        {/* Direita: Menu Hambúrguer (Sempre visível) */}
-        <div className="navbar-toggle">
-          <button onClick={() => setMenuAberto(!menuAberto)} className="navbar-toggle-button">
-            {menuAberto ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
       </div>
 
-      {/* --- MENU OVERLAY --- */}
-      <div 
-        className={`navbar-mobile-overlay ${menuAberto ? 'is-open' : ''}`}
-        onClick={() => setMenuAberto(false)} 
-      >
-        <div className="navbar-mobile-content" onClick={(e) => e.stopPropagation()}>
-          
-          {/* --- CORREÇÃO 2: ESTA LINHA ESTAVA FALTANDO ---
-            É ela que desenha os botões de CV, Tema e Idioma
-          */}
-          <NavbarActions isMobile={true} />
+      {/* Centro: Links de Navegação (Desktop) */}
+      <div className="navbar-center">
+        {/* 2. ADAPTADO: Trocamos <a> por <button> para usar o onScrollTo */}
+        <button onClick={() => handleNavClick("sobre")}>Sobre mim</button>
+        <button onClick={() => handleNavClick("skills")}>Habilidades</button>
+        <button onClick={() => handleNavClick("projetos")}>Projetos</button>
+        <button onClick={() => handleNavClick("contato")}>Contato</button>
+      </div>
 
-          <hr className="navbar-mobile-divider" />
+      {/* Direita: Hambúrguer */}
+      <div className="navbar-right">
+        <button
+          className="hamburger"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Menu"
+        >
+          {/* Usamos os ícones do Lucide-react */}
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
 
-          {/* 2. Links de Navegação */}
-          <div className="navbar-mobile-links">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className="navbar-mobile-button"
+        {/* O Menu que abre */}
+        <div className={`menu-dropdown ${isMenuOpen ? "open" : ""}`}>
+          {/* 3. ADAPTADO: Adicionamos os links de navegação aqui para o mobile */}
+          {/*<div className="mobile-links-section">
+            <button onClick={() => handleNavClick("sobre")}>Sobre mim</button>
+            <button onClick={() => handleNavClick("skills")}>
+              Habilidades
+            </button>
+            <button onClick={() => handleNavClick("projetos")}>Projetos</button>
+            <button onClick={() => handleNavClick("contato")}>Contato</button>
+          </div>
+           {-----REMOVER O COMENTARIO SE QUISER ADICIONAR OS CAMPOS AO MENU HAMBURGUER-----}
+          <hr className="mobile-divider" />*/}
+
+          {/* Seção de Ações (CV, Tema, Idioma) */}
+          <div className="mobile-actions-section">
+            <a href="/seu-cv.pdf" download className="cv-button">
+              <Download size={18} /> Baixar CV
+            </a>
+
+            <div className="action-item-mobile">
+              <span>Tema</span>
+              <div
+                className="switch-container"
+                onClick={() => setDarkMode(!darkMode)}
               >
-                {link.nome}
-              </button>
-            ))}
+                {/* Trocamos a lógica: Padrão é Escuro (Lua) */}
+                {darkMode ? "☀️" : "🌙"}
+              </div>
+            </div>
+
+            <div className="action-item-mobile">
+              <span>Idioma</span>
+              <select className="language-select">
+                <option value="pt">🇧🇷</option>
+                <option value="en">🇺🇸</option>
+                <option value="es">🇪🇸</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

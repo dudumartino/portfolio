@@ -1,64 +1,51 @@
-/* src/styles/Home.css (CORRIGIDO) */
+/* src/styles/Home.css */
 .home-section {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* --- CORREÇÃO DA DISTÂNCIA --- */
-  /* Reduz a altura mínima para "descontar" o espaço da navbar.
-    (100vh - 8rem) = 100% da altura da tela - aprox. o tamanho da navbar e seus vãos.
-  */
   min-height: calc(100vh - 8rem);
-
   text-align: center;
-  color: white;
+  color: var(--color-text); /* Usa a variável global */
   position: relative;
-  overflow: hidden;
-  padding: 2rem; /* Adiciona um padding para segurança em telas menores */
+  overflow: hidden; 
+  padding: 2rem; 
 }
 
 .home-content {
   max-width: 900px;
-  /* Removido o padding daqui, pois foi para .home-section */
   animation: fadeIn 1.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .home-greeting {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: var(--color-gray-light);
+  color: var(--color-text-faded); /* Usa a variável global */
 }
 
 .home-name {
-  font-size: 4.5rem;
+  font-size: 4.5rem; 
   font-weight: 800;
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  color: white;
+  color: var(--color-text); /* Usa a variável global */
 }
 
 .green-bracket {
-  color: var(--color-emerald-light);
+  color: var(--color-emerald-light); 
 }
 
 .highlight {
-  color: var(--color-emerald-light);
-  font-weight: 700;
-  padding: 0.2em 0.4em;
-  background: rgba(110, 231, 183, 0.1); /* Fundo verde bem sutil */
-  border-radius: 5px; /* (var(--border-radius-md) é 5px) */
-  display: inline-block;
+  color: var(--color-emerald-light); 
+  font-weight: 700; 
+  padding: 0.2em 0.4em; 
+  background: rgba(110, 231, 183, 0.1); 
+  border-radius: 5px; 
+  display: inline-block; 
 }
 
 .home-description {
@@ -66,11 +53,10 @@
   line-height: 1.6;
   max-width: 700px;
   margin: 0 auto 2rem auto;
-
-  /* --- CORREÇÃO DA COR --- */
-  color: var(--color-gray-light); /* Cor mais clara */
+  color: var(--color-text-faded); /* Usa a variável global */
 }
 
+/* ... (o resto do arquivo Home.css pode continuar igual) ... */
 .home-cta-button {
   background-color: var(--color-emerald-dark);
   color: white;
@@ -81,50 +67,46 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
   margin-top: 2rem;
 }
-
 .home-cta-button:hover {
   background-color: var(--color-emerald-light);
-  color: var(--color-black);
+  color: #1f2937;
   transform: translateY(-3px);
 }
-
-/* Responsividade */
 @media (max-width: 992px) {
-  .home-name {
-    font-size: 3.8rem;
-  }
-  .home-description {
-    font-size: 1.15rem;
-  }
+  .home-name { font-size: 3.8rem; }
+  .home-description { font-size: 1.15rem; }
 }
-
 @media (max-width: 768px) {
-  .home-section {
-    /* Em telas menores, remove a altura mínima 
-       para o conteúdo fluir naturalmente */
-    min-height: auto;
-    padding: 8rem 1rem 4rem 1rem; /* Mais padding no topo */
-  }
-  .home-name {
-    font-size: 3rem;
-  }
-  .home-greeting {
-    font-size: 1.3rem;
-  }
-  .home-description {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
+  .home-section { min-height: auto; padding: 8rem 1rem 4rem 1rem; }
+  .home-name { font-size: 3rem; }
+  .home-greeting { font-size: 1.3rem; }
+  .home-description { font-size: 1rem; padding: 0 1rem; }
+}
+@media (max-width: 480px) {
+  .home-name { font-size: 2.2rem; }
+  .home-greeting { font-size: 1.1rem; }
+  .home-description { font-size: 0.95rem; }
 }
 
-@media (max-width: 480px) {
-  .home-name {
-    font-size: 2.2rem;
-  }
-  .home-greeting {
-    font-size: 1.1rem;
-  }
-  .home-description {
-    font-size: 0.95rem;
-  }
+/*
+ ==========================================
+ === ATUALIZAÇÃO PARA O MODO CLARO (FINAL) ===
+ ==========================================
+*/
+body.light-mode .home-name {
+  color: var(--color-text); /* Já herda, mas para garantir */
+}
+
+body.light-mode .home-greeting,
+body.light-mode .home-description {
+  color: var(--color-text-faded); /* Usa o cinza escuro */
+}
+
+/* O highlight verde já funciona bem nos dois modos */
+body.light-mode .highlight {
+  background: rgba(110, 231, 183, 0.2); /* Fundo verde um pouco mais forte */
+}
+
+body.light-mode .home-cta-button:hover {
+  color: #1f2937; /* Garante que o texto do botão fique escuro */
 }

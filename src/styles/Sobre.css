@@ -1,12 +1,10 @@
 /* src/styles/Sobre.css */
 .sobre-section {
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.3
-  ); /* Um pouco mais escuro para diferenciar */
+  /* 1. ATUALIZADO: Usa a variável de fundo de card */
+  background-color: var(--color-card-bg); 
+  box-shadow: var(--shadow-light); /* Adiciona sombra no modo claro */
   padding: 6rem 1rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .sobre-container {
@@ -19,55 +17,44 @@
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 3rem;
-  color: white;
+  color: var(--color-text); /* Usa variável */
 }
 
 .sobre-content-box {
-  background-color: rgba(255, 255, 255, 0.05); /* Fundo claro e transparente */
-  padding: 2.5rem;
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-light);
-  backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+  /* 2. ATUALIZADO: O fundo agora é transparente */
+  background-color: transparent; 
+  padding: 0; /* Remove padding desnecessário */
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
   text-align: left;
 }
 
 .sobre-text {
   font-size: 1.1rem;
-  color: var(--color-gray-light);
+  color: var(--color-text-faded); /* Usa variável */
   line-height: 1.8;
-
-  /* --- CORREÇÃO APLICADA AQUI --- */
-  margin-bottom: 1.5rem; /* Adiciona espaço abaixo de cada parágrafo */
+  margin-bottom: 1.5rem; 
 }
-
-/* Remove a margem do último parágrafo para não criar espaço extra */
 .sobre-text:last-child {
   margin-bottom: 0;
 }
 
-/* Responsividade */
+/* ... (Media queries não precisam mudar) ... */
 @media (max-width: 768px) {
-  .sobre-section {
-    padding: 4rem 1rem;
-  }
-  .sobre-title {
-    font-size: 2.2rem;
-    margin-bottom: 2rem;
-  }
-  .sobre-content-box {
-    padding: 1.5rem;
-  }
-  .sobre-text {
-    font-size: 1rem;
-    margin-bottom: 1rem; /* Margem menor em mobile */
-  }
+  .sobre-section { padding: 4rem 1rem; }
+  .sobre-title { font-size: 2.2rem; margin-bottom: 2rem; }
+  .sobre-text { font-size: 1rem; margin-bottom: 1rem; }
+}
+@media (max-width: 480px) {
+  .sobre-title { font-size: 1.8rem; }
 }
 
-@media (max-width: 480px) {
-  .sobre-title {
-    font-size: 1.8rem;
-  }
-  .sobre-content-box {
-    padding: 1rem;
-  }
+/*
+ ==========================================
+ === ATUALIZAÇÃO PARA O MODO CLARO (FINAL) ===
+ ==========================================
+*/
+body.light-mode .sobre-section {
+  background-color: var(--color-card-bg); /* Fundo branco */
 }

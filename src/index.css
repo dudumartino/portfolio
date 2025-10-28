@@ -1,15 +1,23 @@
 /* src/index.css */
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap');
 
-/* Definição de variáveis de cor para o projeto */
+/* --- Variáveis de Cor (MODO ESCURO - PADRÃO) --- */
 :root {
   --color-black: #000;
-  --color-military-green: #3a5040; /* Verde militar mais escuro */
-  --color-emerald-light: #6ee7b7; /* Um verde mais claro para detalhes */
-  --color-emerald-dark: #065f46; /* Um verde mais escuro para hover */
-  --color-gray-dark: #1f2937;
-  --color-gray-medium: #4b5563;
-  --color-gray-light: #d1d5db;
+  --color-military-green: #3a5040;
+  --color-emerald-light: #6ee7b7; /* Verde Highlight */
+  --color-emerald-dark: #065f46;
+  --color-gray-dark: #1f2937;    /* Cinza Escuro (fundo de card) */
+  --color-gray-medium: #4b5563; /* Cinza Médio (texto apagado) */
+  --color-gray-light: #d1d5db;   /* Cinza Claro (texto principal) */
+  
+  /* Cores Semânticas (Padrão) */
+  --color-background: linear-gradient(to top, var(--color-black), var(--color-military-green));
+  --color-text: white;
+  --color-text-faded: var(--color-gray-light);
+  --color-card-bg: rgba(255, 255, 255, 0.05);
+  
+  /* Tamanhos Padrão */
   --border-radius-lg: 10px;
   --border-radius-md: 5px;
   --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -17,57 +25,56 @@
   --shadow-emerald: 0 4px 15px rgba(6, 95, 70, 0.4);
 }
 
-/* Reset e Estilos de Base */
+/* --- ATUALIZAÇÃO: LÓGICA DO MODO CLARO "NATURAL" --- */
+body.light-mode {
+  /* Fundo branco/cinza muito claro */
+  --color-background: #f9fafb; 
+  
+  /* Textos invertidos */
+  --color-text: #1f2937;         /* Texto principal (Quase Preto) */
+  --color-text-faded: #4b5563; /* Texto apagado (Cinza Médio) */
+  
+  /* Cards invertidos */
+  --color-card-bg: rgba(255, 255, 255, 1); /* Fundo de card (Branco) */
+  --color-gray-dark: #f9fafb;    /* Fundo de card mais escuro */
+  
+  /* Sombra (agora é visível) */
+  --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-medium: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+/* --- FIM DA ATUALIZAÇÃO --- */
+
+
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  /* O gradiente de fundo que você pediu */
-  background: linear-gradient(
-    to top,
-    var(--color-black),
-    var(--color-military-green)
-  );
-  color: white;
+  
+  background: var(--color-background);
+  color: var(--color-text);
+  
   min-height: 100vh;
   scroll-behavior: smooth;
-  overflow-x: hidden; /* Evita scroll horizontal */
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* Estilo de seleção de texto */
 ::selection {
   background-color: var(--color-emerald-light);
-  color: var(--color-black);
+  /* Cor do texto da seleção (preto) */
+  color: #1f2937; 
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Montserrat", sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
   margin-top: 0;
   margin-bottom: 0.5em;
+  color: var(--color-text); /* Garante que os títulos também mudem de cor */
 }
 
 p {
   line-height: 1.6;
 }
-
-/* Reset básico para links e botões */
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  color: inherit;
-  font-family: inherit; /* Garante que o botão use a fonte do body */
-}
+a { text-decoration: none; color: inherit; }
+button { background: none; border: none; cursor: pointer; padding: 0; color: inherit; }
