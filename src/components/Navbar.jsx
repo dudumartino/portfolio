@@ -1,92 +1,93 @@
-// src/components/Navbar.jsx - (ÚLTIMA TENTATIVA COM EMOJIS)
-import React, { useState } from "react";
-import { Menu, X, Download } from "lucide-react";
-import "../styles/Navbar.css";
+// src/components/Navbar.jsx
+import React, { useState } from 'react';
+// CORREÇÃO 1: 'FaWhatsapp' foi removido daqui.
+import { Menu, X, Download } from 'lucide-react';
+import '../styles/Navbar.css'; // Importa o CSS para a Navbar
 
 const Navbar = ({ onScrollTo }) => {
   const [menuAberto, setMenuAberto] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false); 
   const [isLangOpen, setIsLangOpen] = useState(false);
-  const [selectedLang, setSelectedLang] = useState("br");
+  const [selectedLang, setSelectedLang] = useState('br');
 
   const navLinks = [
-    { id: "sobre", nome: "Sobre Mim" },
-    { id: "skills", nome: "Habilidades" },
-    { id: "projetos", nome: "Projetos" },
-    { id: "contato", nome: "Contato" },
+    { id: 'sobre', nome: 'Sobre Mim' },
+    { id: 'skills', nome: 'Habilidades' }, 
+    { id: 'projetos', nome: 'Projetos' },
+    { id: 'contato', nome: 'Contato' },
   ];
 
   const handleNavClick = (id) => {
     onScrollTo(id);
-    setMenuAberto(false);
+    setMenuAberto(false); // Fecha o menu ao clicar em um link
   };
 
-  // Função para pegar o emoji da bandeira
   const getFlagEmoji = (lang) => {
-    if (lang === "en") return "🇺🇸";
-    if (lang === "es") return "🇪🇸";
-    return "🇧🇷"; // Default
+    if (lang === 'en') return '🇺🇸';
+    if (lang === 'es') return '🇪🇸';
+    return '🇧🇷'; 
   };
 
   const handleLangChange = (lang) => {
     setSelectedLang(lang);
-    setIsLangOpen(false);
+    setIsLangOpen(false); 
   };
 
   const handleThemeToggle = () => {
     setIsDarkMode(!isDarkMode);
   };
 
+  // Componente interno para as AÇÕES (CV, Tema, Idioma)
   const NavbarActions = ({ isMobile = false }) => (
-    <div className={isMobile ? "navbar-mobile-actions" : "navbar-actions"}>
+    <div className={isMobile ? "navbar-mobile-actions" : "navbar-actions-desktop"}>
       {/* Botão Baixar CV */}
-      <a
-        href="/seu-cv.pdf"
+      <a 
+        href="/seu-cv.pdf" 
         target="_blank"
         rel="noopener noreferrer"
-        className={
-          isMobile
-            ? "navbar-mobile-button cv-button-mobile"
-            : "navbar-button cv-button"
-        }
+        className="navbar-action-button cv-button"
       >
-        <Download size={isMobile ? 24 : 18} />
+        <Download size={20} />
         Baixar CV
       </a>
 
       {/* Switch de Tema */}
-      <button
-        className="theme-switch"
-        onClick={handleThemeToggle}
-        aria-label="Mudar tema"
-      >
-        {isDarkMode ? "☀️" : "🌙"}
-      </button>
+      <div className="navbar-action-item">
+        <span>Tema</span>
+        <button 
+          className="theme-switch" 
+          onClick={handleThemeToggle}
+          aria-label="Mudar tema"
+        >
+          {isDarkMode ? '☀️' : '🌙'}
+        </button>
+      </div>
 
       {/* Seletor de Idioma */}
-      <div className="lang-selector">
-        <button
-          className="lang-button"
-          onClick={() => setIsLangOpen(!isLangOpen)}
-          aria-label="Mudar idioma"
-        >
-          {/* Tenta exibir o emoji da bandeira selecionada */}
-          <span className="flag-emoji">{getFlagEmoji(selectedLang)}</span>
-        </button>
-        {isLangOpen && (
-          <div className="lang-dropdown">
-            {/* Tenta exibir os emojis no dropdown */}
-            <button onClick={() => handleLangChange("br")}>
-              <span className="flag-emoji">🇧🇷</span> Português
-            </button>
-            <button onClick={() => handleLangChange("en")}>
-              <span className="flag-emoji">🇺🇸</span> English
-            </button>
-            <button onClick={() => handleLangChange("es")}>
-              <span className="flag-emoji">🇪🇸</span> Español
-            </button>
-          </div>
-        )}
+      <div className="navbar-action-item lang-selector">
+        <span>Idioma</span>
+        <div className="lang-selector-inner">
+          <button 
+            className="lang-button" 
+            onClick={() => setIsLangOpen(!isLangOpen)}
+            aria-label="Mudar idioma"
+          >
+            <span className="flag-emoji">{getFlagEmoji(selectedLang)}</span>
+          </button>
+          {isLangOpen && (
+            <div className="lang-dropdown">
+              <button onClick={() => handleLangChange('br')}>
+                <span className="flag-emoji">🇧🇷</span> Português
+              </button>
+              <button onClick={() => handleLangChange('en')}>
+                <span className="flag-emoji">🇺🇸</span> English
+              </button>
+              <button onClick={() => handleLangChange('es')}>
+                <span className="flag-emoji">🇪🇸</span> Español
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -94,46 +95,50 @@ const Navbar = ({ onScrollTo }) => {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <span className="navbar-brand" onClick={() => onScrollTo("home")}>
-          EduardoMartino
+        {/* Esquerda: EM (Verde) */}
+        <span
+          className="navbar-brand-mono"
+          onClick={() => onScrollTo('home')}
+        >
+          EM
         </span>
 
-        <div className="navbar-right-content">
-          <div className="navbar-links-desktop">
-            {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => handleNavClick(link.id)}
-                className="navbar-button"
-              >
-                {link.nome}
-              </button>
-            ))}
-          </div>
-
-          <NavbarActions isMobile={false} />
-
-          <div className="navbar-toggle">
+        {/* Meio: Links Desktop */}
+        <div className="navbar-links-desktop">
+          {navLinks.map((link) => (
             <button
-              onClick={() => setMenuAberto(!menuAberto)}
-              className="navbar-toggle-button"
+              key={link.id}
+              onClick={() => handleNavClick(link.id)}
+              className="navbar-link-button"
             >
-              {menuAberto ? <X size={28} /> : <Menu size={28} />}
+              {link.nome}
             </button>
-          </div>
+          ))}
+        </div>
+
+        {/* Direita: Menu Hambúrguer (Sempre visível) */}
+        <div className="navbar-toggle">
+          <button onClick={() => setMenuAberto(!menuAberto)} className="navbar-toggle-button">
+            {menuAberto ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
       </div>
 
-      <div
-        className={`navbar-mobile-overlay ${menuAberto ? "is-open" : ""}`}
-        onClick={() => setMenuAberto(false)}
+      {/* --- MENU OVERLAY --- */}
+      <div 
+        className={`navbar-mobile-overlay ${menuAberto ? 'is-open' : ''}`}
+        onClick={() => setMenuAberto(false)} 
       >
-        <div
-          className="navbar-mobile-content"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="navbar-mobile-content" onClick={(e) => e.stopPropagation()}>
+          
+          {/* --- CORREÇÃO 2: ESTA LINHA ESTAVA FALTANDO ---
+            É ela que desenha os botões de CV, Tema e Idioma
+          */}
           <NavbarActions isMobile={true} />
+
           <hr className="navbar-mobile-divider" />
+
+          {/* 2. Links de Navegação */}
           <div className="navbar-mobile-links">
             {navLinks.map((link) => (
               <button

@@ -30,7 +30,7 @@ const Contato = () => {
         <div className="social-icons">
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/seu-perfil" /* Altere para seu perfil */
+            href="https://www.linkedin.com/in/eduardo-martino/" /* Altere para seu perfil */
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon-link linkedin-icon"
@@ -41,7 +41,7 @@ const Contato = () => {
 
           {/* Github */}
           <a
-            href="https://www.github.com/seu-usuario" /* Altere para seu usuário */
+            href="https://github.com/dudumartino" /* Altere para seu usuário */
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon-link github-icon"

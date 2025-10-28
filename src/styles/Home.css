@@ -1,166 +1,130 @@
-/* src/styles/Home.css */
+/* src/styles/Home.css (CORRIGIDO) */
 .home-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* --- CORREÇÃO DA DISTÂNCIA --- */
+  /* Reduz a altura mínima para "descontar" o espaço da navbar.
+    (100vh - 8rem) = 100% da altura da tela - aprox. o tamanho da navbar e seus vãos.
+  */
   min-height: calc(100vh - 8rem);
-  padding: 4rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
   text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem; /* Adiciona um padding para segurança em telas menores */
 }
 
-.home-content-container {
-  display: flex;
-  flex-direction: row; /* Lado a lado em desktop */
-  align-items: center;
-  justify-content: center;
-  max-width: 1000px;
-  gap: 2.5rem; /* Espaçamento entre texto e imagem */
-  width: 100%;
+.home-content {
+  max-width: 900px;
+  /* Removido o padding daqui, pois foi para .home-section */
+  animation: fadeIn 1.5s ease-out forwards;
 }
 
-.home-text-content {
-  flex: 1; /* Ocupa 50% do espaço */
-  text-align: left; /* Texto alinhado à esquerda */
-}
-
-/* --- MUDANÇAS AQUI --- */
-.home-title {
-  font-family: "Fira Code", monospace; /* Fonte estilo código */
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
-
-  /* Adicionado para alinhar o texto e o cursor */
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
-}
-
-.home-print-text {
-  /* Animação de pulsação (movida do .home-print-f) */
-  animation: pulse 2s infinite ease-in-out;
-}
-
-.home-print-f {
-  color: var(--color-emerald-light);
-  /* A animação 'pulse' foi movida para o span .home-print-text */
-}
-
-/* Novo: O cursor piscando */
-.home-caret {
-  display: inline-block;
-  width: 10px; /* Largura do cursor */
-  height: 3.5rem; /* Altura (baseada no font-size do .home-title) */
-  background-color: var(--color-emerald-light);
-  margin-left: 10px; /* Espaço entre o texto e o cursor */
-  animation: blink 1s infinite step-end; /* Animação de piscar */
-}
-/* --- FIM DAS MUDANÇAS --- */
-
-.home-subtitle {
-  font-size: 2.2rem;
-  color: var(--color-gray-light);
-  font-weight: 600;
-}
-
-.home-image-container {
-  flex: 1; /* Ocupa 50% do espaço */
-  display: flex;
-  justify-content: flex-end; /* Alinha a imagem à direita */
-  align-items: center;
-}
-
-.home-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--border-radius-md);
-  box-shadow: var(--shadow-medium);
-}
-
-/* Animação de pulsação (para o texto) */
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-/* Nova: Animação de piscar (para o cursor) */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
+@keyframes fadeIn {
+  from {
     opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* --- Responsividade (com ajustes para o cursor) --- */
+.home-greeting {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-gray-light);
+}
+
+.home-name {
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  color: white;
+}
+
+.green-bracket {
+  color: var(--color-emerald-light);
+}
+
+.highlight {
+  color: var(--color-emerald-light);
+  font-weight: 700;
+  padding: 0.2em 0.4em;
+  background: rgba(110, 231, 183, 0.1); /* Fundo verde bem sutil */
+  border-radius: 5px; /* (var(--border-radius-md) é 5px) */
+  display: inline-block;
+}
+
+.home-description {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+
+  /* --- CORREÇÃO DA COR --- */
+  color: var(--color-gray-light); /* Cor mais clara */
+}
+
+.home-cta-button {
+  background-color: var(--color-emerald-dark);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 2rem;
+}
+
+.home-cta-button:hover {
+  background-color: var(--color-emerald-light);
+  color: var(--color-black);
+  transform: translateY(-3px);
+}
+
+/* Responsividade */
 @media (max-width: 992px) {
-  .home-title {
-    font-size: 3rem;
+  .home-name {
+    font-size: 3.8rem;
   }
-  .home-subtitle {
-    font-size: 1.75rem;
-  }
-  .home-caret {
-    height: 3rem; /* Ajusta altura do cursor */
+  .home-description {
+    font-size: 1.15rem;
   }
 }
 
 @media (max-width: 768px) {
   .home-section {
-    padding: 2rem 1rem;
-    min-height: unset;
+    /* Em telas menores, remove a altura mínima 
+       para o conteúdo fluir naturalmente */
+    min-height: auto;
+    padding: 8rem 1rem 4rem 1rem; /* Mais padding no topo */
   }
-
-  .home-content-container {
-    flex-direction: column; /* Empilha imagem e texto em mobile */
-    text-align: center;
-    gap: 1.5rem;
+  .home-name {
+    font-size: 3rem;
   }
-
-  .home-text-content {
-    text-align: center; /* Centraliza o texto em mobile */
+  .home-greeting {
+    font-size: 1.3rem;
   }
-
-  .home-image-container {
-    justify-content: center; /* Centraliza a imagem em mobile */
-    order: -1; /* Coloca a imagem ACIMA do texto em mobile */
-    margin-bottom: 1.5rem;
-  }
-
-  .home-title {
-    font-size: 2.5rem;
-    justify-content: center; /* Centraliza o texto e cursor */
-  }
-
-  .home-subtitle {
-    font-size: 1.5rem;
-  }
-
-  .home-image {
-    max-width: 90%;
-  }
-
-  .home-caret {
-    height: 2.5rem; /* Ajusta altura do cursor */
+  .home-description {
+    font-size: 1rem;
+    padding: 0 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .home-title {
-    font-size: 2rem;
+  .home-name {
+    font-size: 2.2rem;
   }
-  .home-caret {
-    height: 2rem; /* Ajusta altura do cursor */
+  .home-greeting {
+    font-size: 1.1rem;
+  }
+  .home-description {
+    font-size: 0.95rem;
   }
 }

@@ -1,4 +1,17 @@
-/* src/styles/Navbar.css */
+/* src/styles/Navbar.css (REFEITO) */
+
+/* --- Variáveis (do index.css, mas úteis para referência) ---
+:root {
+  --color-emerald-light: #6ee7b7;
+  --color-emerald-dark: #065f46;
+  --color-gray-dark: #1f2937;
+  --color-gray-medium: #4b5563;
+  --border-radius-lg: 10px;
+  --border-radius-md: 5px;
+}
+------------------------------------------------------------- */
+
+/* --- Base da Navbar --- */
 .navbar {
   position: sticky;
   top: 0.5rem;
@@ -6,7 +19,7 @@
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   margin: 0.5rem 1rem;
-  padding: 1rem;
+  padding: 0.75rem 1.5rem; /* Padding vertical, horizontal */
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-medium);
 }
@@ -15,117 +28,173 @@
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* ESQUERDA | CENTRO | DIREITA */
   align-items: center;
 }
 
-.navbar-brand {
-  font-size: 1.8rem;
+/* --- Esquerda: EM (Monograma) --- */
+.navbar-brand-mono {
+  font-size: 2.2rem;
   font-weight: 700;
+  color: var(--color-emerald-light); /* Cor do highlight */
   cursor: pointer;
-  transition: color 0.3s ease;
-  white-space: nowrap; /* Garante que a marca não quebre a linha */
+  line-height: 1;
 }
 
-.navbar-brand:hover {
-  color: var(--color-emerald-light);
-}
-
-/* Container para toda a direita */
-.navbar-right-content {
-  display: flex;
-  align-items: center;
-  gap: 1rem; /* Espaço entre os links e as novas ações */
-}
-
+/* --- Meio: Links Desktop --- */
 .navbar-links-desktop {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
 }
 
-.navbar-button {
-  padding: 0.75rem 1rem;
+.navbar-link-button {
+  padding: 0.75rem 1.25rem;
   border-radius: var(--border-radius-md);
   font-weight: 600;
   color: white;
   font-size: 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  white-space: nowrap; /* Evita que o texto quebre */
 }
 
-.navbar-button:hover {
-  background-color: var(--color-emerald-dark);
+.navbar-link-button:hover {
+  background-color: var(--color-emerald-dark); 
 }
 
-/* Estilos para as Ações (CV, Tema, Idioma) */
-.navbar-actions {
+/* --- Direita: Botão Hambúrguer --- */
+.navbar-toggle {
+  display: block; /* O Hambúrguer agora está SEMPRE visível */
+  z-index: 1001; /* Fica acima do overlay */
+}
+
+.navbar-toggle-button {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex; /* Para centralizar o ícone */
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Menu Overlay (Aberto) --- */
+.navbar-mobile-overlay {
+  /* Escondido por padrão */
+  display: none; 
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); 
+  backdrop-filter: blur(10px); 
+  
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000; 
+}
+
+/* Classe que o JS adiciona para MOSTRAR o menu */
+.navbar-mobile-overlay.is-open {
+  display: flex; 
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Conteúdo de dentro do Overlay */
+.navbar-mobile-content {
+  background-color: rgba(0, 0, 0, 0.85); 
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Faz os itens preencherem a largura */
+  width: 90%;
+  max-width: 350px;
+}
+
+/* --- 1. Ações (CV, Tema, Idioma) no Overlay --- */
+.navbar-mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Espaço entre as ações */
+  width: 100%;
+}
+
+.navbar-action-button {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* Espaço entre os novos botões */
-  border-left: 1px solid var(--color-gray-medium); /* Linha divisória */
-  padding-left: 1rem;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  transition: background-color 0.3s ease;
 }
 
 .cv-button {
   background-color: var(--color-emerald-dark);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem; /* Um pouco menor para caber */
-  padding: 0.6rem 0.8rem; /* Um pouco menor */
 }
-
 .cv-button:hover {
   background-color: var(--color-emerald-light);
   color: var(--color-black);
 }
 
+.navbar-action-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
 .theme-switch {
   background-color: var(--color-gray-dark);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.3rem; /* Tamanho do emoji */
+  font-size: 1.5rem; 
   transition: all 0.3s ease;
 }
-
 .theme-switch:hover {
   background-color: var(--color-gray-medium);
-  transform: scale(1.1);
 }
 
-.lang-selector {
+.lang-selector-inner {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .lang-button {
-  background-color: transparent;
+  background-color: var(--color-gray-dark);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1.8rem; 
+  line-height: 1;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem;
-  border-radius: var(--border-radius-md);
-  transition: background-color 0.3s ease;
-  /* --- ALTERAÇÃO AQUI --- */
-  font-size: 1.8rem; /* Tamanho do emoji/texto da bandeira principal */
-  line-height: 1; /* Alinhamento vertical */
 }
-
 .lang-button .flag-emoji {
-  font-size: inherit; /* Herda o tamanho do botão */
-  line-height: 1;
-}
-
-.lang-button:hover {
-  background-color: var(--color-gray-dark);
+  font-size: inherit; 
 }
 
 .lang-dropdown {
   position: absolute;
-  top: 120%; /* Abaixo do botão */
+  top: 110%; /* Posição no overlay */
   right: 0;
   background-color: var(--color-gray-dark);
   border-radius: var(--border-radius-md);
@@ -135,9 +204,8 @@
   flex-direction: column;
   gap: 0.25rem;
   z-index: 1010;
-  width: 160px; /* Largura fixa */
+  width: 180px; /* Mais largo */
 }
-
 .lang-dropdown button {
   background-color: transparent;
   color: white;
@@ -146,111 +214,18 @@
   text-align: left;
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* Espaço entre bandeira e texto */
+  gap: 0.75rem; 
   transition: background-color 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
-
-/* --- ALTERAÇÃO AQUI --- */
 .lang-dropdown button .flag-emoji {
-  font-size: 1.2rem; /* Tamanho do emoji/texto da bandeira no dropdown */
-  line-height: 1;
+  font-size: 1.2rem; 
 }
-
 .lang-dropdown button:hover {
   background-color: var(--color-emerald-dark);
 }
 
-/* --- Menu Mobile --- */
-.navbar-toggle {
-  display: none;
-  z-index: 1001;
-}
-
-.navbar-toggle-button {
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.25rem;
-}
-
-.navbar-mobile-overlay {
-  display: none;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Fundo transparente */
-  backdrop-filter: blur(10px); /* Efeito de vidro fosco mais forte */
-
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.3s ease-in-out;
-  z-index: 1000;
-}
-
-.navbar-mobile-overlay.is-open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.navbar-mobile-content {
-  background-color: rgba(0, 0, 0, 0.8); /* Fundo mais sólido para o conteúdo */
-  padding: 2rem;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-medium);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  max-width: 350px;
-}
-
-.navbar-mobile-actions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.cv-button-mobile {
-  font-size: 1.2rem;
-  padding: 0.75rem 1.5rem;
-  width: 100%;
-  text-align: center;
-  justify-content: center;
-  gap: 0.75rem;
-  background-color: var(--color-emerald-dark);
-}
-
-.navbar-mobile-actions .lang-selector {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.navbar-mobile-actions .lang-button {
-  font-size: 2.5rem; /* Bandeira maior no mobile */
-  background-color: var(--color-gray-dark);
-  padding: 0.5rem;
-}
-.navbar-mobile-actions .lang-dropdown {
-  position: relative; /* Não é mais absoluto */
-  top: auto;
-  right: auto;
-  margin-top: 1rem;
-  width: 100%;
-}
-
+/* Divisor no Overlay */
 .navbar-mobile-divider {
   border: none;
   border-top: 1px solid var(--color-gray-medium);
@@ -258,6 +233,7 @@
   margin: 2rem 0;
 }
 
+/* --- 2. Links de Navegação no Overlay --- */
 .navbar-mobile-links {
   display: flex;
   flex-direction: column;
@@ -268,10 +244,10 @@
 }
 
 .navbar-mobile-button {
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 600;
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border-radius: var(--border-radius-md);
   transition: background-color 0.3s ease;
   width: 100%;
@@ -281,28 +257,30 @@
   background-color: var(--color-emerald-dark);
 }
 
-/* --- BREAKPOINT IMPORTANTE --- */
-/* Menu hambúrguer aparece em 992px (tablets) */
+
+/* --- Responsividade --- */
+/* (Telas de tablet e menores) */
 @media (max-width: 992px) {
-  .navbar-links-desktop,
-  .navbar-actions {
-    display: none; /* Esconde links e ações do desktop */
+  .navbar-links-desktop {
+    display: none; /* Esconde os links do meio */
   }
-  .navbar-toggle {
-    display: block; /* Mostra botão de menu */
-  }
-  .navbar-mobile-overlay {
-    display: flex;
-    /* As outras propriedades (visibility, opacity) são controladas pelo .is-open */
+  
+  .navbar-container {
+    /* No mobile, só temos EM (esquerda) e Hambúrguer (direita) */
+    justify-content: space-between; 
   }
 }
 
-/* Ajuste fino para telas menores */
+/* (Telas de celular) */
 @media (max-width: 768px) {
   .navbar {
     margin: 0.5rem 0.5rem;
+    padding: 0.75rem 1rem;
   }
-  .navbar-brand {
-    font-size: 1.5rem;
+  .navbar-brand-mono {
+    font-size: 1.8rem;
+  }
+  .navbar-mobile-button {
+    font-size: 1.8rem;
   }
 }

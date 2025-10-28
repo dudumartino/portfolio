@@ -5,7 +5,7 @@ import "../styles/Sobre.css"; // Importa o CSS para Sobre
 const Sobre = () => (
   <section id="sobre" className="sobre-section">
     <div className="sobre-container">
-      <h2 className="sobre-title">Sobre Mim</h2>
+      <h2 className="sobre-title">Sobre mim</h2>
       <div className="sobre-content-box">
         <p className="sobre-text">
           Olá! Eu sou o Eduardo, um programador fullstack apaixonado por

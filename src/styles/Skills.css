@@ -1,16 +1,20 @@
 /* src/styles/Skills.css */
 .skills-section {
   background-color: rgba(0, 0, 0, 0.4);
-  padding: 6rem 1.5rem;
+  padding: 6rem 1rem;
 }
 
 .skills-container {
   max-width: 1000px;
-  width: 100%;
   margin: 0 auto;
 }
 
-/* O <h2> "Skills" usa o estilo global de 'section h2' */
+.skills-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+}
 
 .skills-grid {
   display: grid;
@@ -31,13 +35,12 @@
   color: var(--color-emerald-light);
 }
 
-/* --- Soft Skills Cards --- */
+/* Soft Skills Cards (Sem alteração) */
 .soft-skills-cards {
   display: grid;
-  /* Cria 2 colunas, se couber */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
-  flex-grow: 1; /* Ocupa espaço disponível */
+  flex-grow: 1;
 }
 
 .soft-skill-card {
@@ -49,12 +52,12 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .soft-skill-card:hover {
-  transform: translateY(-5px); /* Efeito de levantar */
-  box-shadow: var(--shadow-emerald); /* Sombra verde */
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-emerald);
 }
 
 .soft-skill-icon {
@@ -76,7 +79,7 @@
   color: var(--color-gray-light);
 }
 
-/* --- Hard Skills --- */
+/* --- ATUALIZAÇÃO NOS ESTILOS DE HARD SKILLS --- */
 .hard-skills-box {
   background-color: rgba(255, 255, 255, 0.05);
   padding: 2.5rem;
@@ -87,50 +90,94 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-grow: 1; /* Ocupa espaço disponível */
+  flex-grow: 1;
 }
 
 .hard-skills-intro {
   font-size: 1.1rem;
   color: var(--color-gray-light);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
 .hard-skills-icons {
   display: flex;
-  flex-wrap: wrap; /* Permite que os ícones quebrem a linha */
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem 2rem;
   width: 100%;
 }
 
-.hard-skill-icon-placeholder {
-  background-color: var(--color-gray-dark);
+.hard-skill-icon-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
   color: var(--color-gray-light);
-  padding: 0.75rem 1.25rem;
-  border-radius: var(--border-radius-md);
+  text-align: center;
+  flex-basis: 90px;
+  max-width: 100px;
+}
+
+/* --- CORREÇÃO DE TAMANHO AQUI --- */
+.hard-skill-icon {
+  /* Isso se aplica aos ícones-fonte (React, Node, etc) */
+  font-size: 3.5rem;
+
+  /* Isso força TODOS os ícones (fonte ou img) a terem o mesmo container */
+  height: 3.5rem;
+  width: 3.5rem;
+
+  /* Isso centraliza o ícone-fonte dentro do container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* NOVO: Estilo para a <img> (C# e C++) */
+.hard-skill-img {
+  width: 100%; /* Ocupa 100% do pai (.hard-skill-icon) */
+  height: 100%; /* Ocupa 100% do pai (.hard-skill-icon) */
+  object-fit: contain; /* Garante que o logo caiba sem distorcer */
+}
+/* --- FIM DA CORREÇÃO DE TAMANHO --- */
+
+.hard-skill-name {
   font-size: 0.9rem;
   font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
 }
 
-.hard-skill-icon-placeholder:hover {
-  background-color: var(--color-emerald-dark);
-  color: white;
+.hard-skill-icon-wrapper:hover {
+  transform: translateY(-5px) scale(1.1);
+  /* O ícone-fonte (React) vai ficar verde */
+  color: var(--color-emerald-light);
 }
 
-.hard-skills-note {
-  font-size: 0.8rem;
-  color: var(--color-gray-medium);
-  margin-top: 2rem;
-  text-align: center;
+/* NOVO: Efeito de hover para as imagens */
+.hard-skill-icon-wrapper:hover .hard-skill-img {
+  /* A imagem (C#) não muda de cor, mas ganha brilho */
+  filter: brightness(1.2) drop-shadow(0 0 5px rgba(110, 231, 183, 0.5));
+  /* O drop-shadow simula o "brilho" verde */
 }
 
-/* Responsividade do Skills */
+/* ... (resto do CSS de responsividade sem alteração) ... */
 @media (max-width: 992px) {
+  .skills-title {
+    font-size: 2.5rem;
+  }
   .skills-category-title {
     font-size: 1.8rem;
+  }
+  .hard-skill-icon {
+    font-size: 3rem;
+    height: 3rem; /* Ajusta altura */
+    width: 3rem; /* Ajusta largura */
+  }
+  .hard-skill-icon-wrapper {
+    flex-basis: 80px;
   }
 }
 
@@ -139,22 +186,32 @@
     padding: 4rem 1rem;
   }
   .skills-grid {
-    grid-template-columns: 1fr; /* Uma coluna em mobile */
-    gap: 3rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .skills-title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
   }
   .skills-category-title {
     font-size: 1.6rem;
     margin-bottom: 1.5rem;
   }
   .soft-skills-cards {
-    /* 2 colunas mesmo em telas menores, se couber */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
-@media (max-width: 480px) {
-  .soft-skills-cards {
-    /* Força 1 coluna em telas muito pequenas */
     grid-template-columns: 1fr;
+  }
+  .hard-skills-box {
+    padding: 1.5rem;
+  }
+  .hard-skills-intro {
+    font-size: 1rem;
+  }
+  .hard-skill-icon {
+    font-size: 3rem;
+    height: 3rem;
+    width: 3rem;
+  }
+  .hard-skill-name {
+    font-size: 0.9rem;
   }
 }
