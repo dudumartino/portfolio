@@ -65,7 +65,11 @@ const Navbar = ({ onScrollTo }) => {
 
           {/* Seção de Ações (CV, Tema, Idioma) */}
           <div className="mobile-actions-section">
-            <a href="/seu-cv.pdf" download className="cv-button">
+            <a
+              href="https://firebasestorage.googleapis.com/v0/b/meu-portfollio.firebasestorage.app/o/CV-Eduardo-2025.2.pdf?alt=media&token=41536576-45fa-4158-b90b-ae8e6f61e6fb"
+              download
+              className="cv-button"
+            >
               <Download size={18} /> Baixar CV
             </a>
 

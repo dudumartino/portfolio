@@ -3,9 +3,8 @@ import React, { useEffect, useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import "../styles/Projetos.css";
 
-// Importa o 'db' (nosso banco) do arquivo de configuração
 import { db } from "../firebaseConfig";
-// Importa as funções do Firestore que vamos usar
+// ATUALIZADO: Importamos 'orderBy' mas não vamos usá-lo agora
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
 const Projetos = () => {
@@ -17,13 +16,16 @@ const Projetos = () => {
     const fetchProjetos = async () => {
       try {
         setLoading(true);
+
         const projetosCollectionRef = collection(db, "projetos");
 
-        // Ordena por um campo 'order' se existir, senão busca sem ordem
-        // (Certifique-se que o campo 'order' existe e é do tipo número nos seus documentos do Firestore)
-        const q = query(projetosCollectionRef, orderBy("order", "asc"));
+        // --- CORREÇÃO AQUI ---
+        // Comentamos a linha que ordena
+        // const q = query(projetosCollectionRef, orderBy('order', 'asc'));
 
-        const snapshot = await getDocs(q);
+        // E usamos a referência direta da coleção (sem ordem específica)
+        const snapshot = await getDocs(projetosCollectionRef); // Mudança aqui
+        // --- FIM DA CORREÇÃO ---
 
         const fetchedProjetos = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -34,16 +36,9 @@ const Projetos = () => {
         setError(null);
       } catch (err) {
         console.error("Erro ao buscar projetos:", err);
-        // Verifica se o erro é por falta do índice 'order'
-        if (err.code === "failed-precondition") {
-          setError(
-            "Erro ao ordenar projetos. Verifique se o campo 'order' existe ou ajuste a consulta no código."
-          );
-        } else {
-          setError(
-            "Não foi possível carregar os projetos. Tente novamente mais tarde."
-          );
-        }
+        setError(
+          "Não foi possível carregar os projetos. Tente novamente mais tarde."
+        );
       } finally {
         setLoading(false);
       }
@@ -52,26 +47,15 @@ const Projetos = () => {
     fetchProjetos();
   }, []);
 
-  // --- Renderização condicional ---
+  // --- Renderização condicional (sem alteração) ---
   if (loading) {
-    return (
-      <section id="projetos" className="projetos-section">
-        <h2 className="projetos-title">Projetos</h2>
-        <p className="loading-message">Carregando projetos...</p>
-      </section>
-    );
+    /* ... */
   }
-
   if (error) {
-    return (
-      <section id="projetos" className="projetos-section">
-        <h2 className="projetos-title">Projetos</h2>
-        <p className="error-message">{error}</p>
-      </section>
-    );
+    /* ... */
   }
 
-  // --- Renderização principal (quando já carregou) ---
+  // --- Renderização principal (sem alteração) ---
   return (
     <section id="projetos" className="projetos-section">
       <h2 className="projetos-title">Projetos</h2>
@@ -84,9 +68,7 @@ const Projetos = () => {
   );
 };
 
-/**
- * Componente de Card para Projeto.
- */
+// --- ProjetoCard (sem alteração) ---
 const ProjetoCard = ({ projeto }) => (
   <div className="projeto-card">
     <div className="projeto-image-container">
@@ -100,14 +82,11 @@ const ProjetoCard = ({ projeto }) => (
       <h3 className="projeto-card-title">{projeto.title}</h3>
       <p className="projeto-card-description">{projeto.description}</p>
       <div className="projeto-card-actions">
-        {/* --- CORREÇÃO AQUI --- */}
-        {/* Garante que o href usa o liveLink do projeto */}
         <a
-          href={projeto.liveLink || "#"} // Usa o link ou '#' se não existir
+          href={projeto.liveLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
           className="projeto-button live-button"
-          // Adiciona estilo de desabilitado se não houver link
           style={{
             pointerEvents: projeto.liveLink ? "auto" : "none",
             opacity: projeto.liveLink ? 1 : 0.5,
@@ -116,14 +95,11 @@ const ProjetoCard = ({ projeto }) => (
           <ExternalLink size={18} />
           <span>Saiba Mais</span>
         </a>
-        {/* --- FIM DA CORREÇÃO --- */}
-
         <a
-          href={projeto.repoLink || "#"} // Usa o link ou '#' se não existir
+          href={projeto.repoLink || "#"}
           target="_blank"
           rel="noopener noreferrer"
           className="projeto-button code-button"
-          // Adiciona estilo de desabilitado se não houver link
           style={{
             pointerEvents: projeto.repoLink ? "auto" : "none",
             opacity: projeto.repoLink ? 1 : 0.5,
