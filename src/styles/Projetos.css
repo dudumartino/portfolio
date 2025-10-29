@@ -1,7 +1,7 @@
 /* src/styles/Projetos.css */
 .projetos-section {
-  background-color: var(--color-card-bg); /* Usa variável */
-  box-shadow: var(--shadow-light); /* Sombra */
+  background-color: var(--color-card-bg); 
+  box-shadow: var(--shadow-light); 
   padding: 6rem 1.5rem;
   width: 100%; 
   box-sizing: border-box; 
@@ -13,7 +13,7 @@
   font-weight: 700;
   margin-bottom: 3rem;
   text-align: center;
-  color: var(--color-text); /* Usa variável */
+  color: var(--color-text); 
 }
 
 .projetos-grid {
@@ -26,7 +26,7 @@
 }
 
 .projeto-card {
-  background-color: var(--color-gray-dark); /* Usa variável */
+  background-color: var(--color-gray-dark); 
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-light);
   overflow: hidden; 
@@ -42,7 +42,7 @@
 .projeto-image-container {
   width: 100%;
   height: 200px; 
-  background-color: #333; /* Placeholder escuro */
+  background-color: #333; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,12 +69,12 @@
   font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
-  color: var(--color-text); /* Usa variável */
+  color: var(--color-text); 
 }
 
 .projeto-card-description {
   font-size: 0.95rem;
-  color: var(--color-text-faded); /* Usa variável */
+  color: var(--color-text-faded); 
   margin-bottom: 1.5rem;
   flex-grow: 1; 
 }
@@ -114,13 +114,51 @@
 
 .loading-message, .error-message {
   font-size: 1.2rem;
-  color: var(--color-text-faded); /* Usa variável */
+  color: var(--color-text-faded); 
   text-align: center;
   margin-top: 2rem;
 }
 .error-message { color: #ef4444; }
 
-/* ... (Media queries não precisam mudar) ... */
+/* --- NOVO: Estilos para o CTA GitHub --- */
+.github-cta {
+  text-align: center;
+  margin-top: 4rem; /* Espaço acima */
+  padding-top: 2rem; /* Espaço interno */
+  border-top: 1px solid var(--color-gray-medium); /* Linha divisória sutil */
+  max-width: 600px; /* Limita a largura */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.github-cta p {
+  font-size: 1.1rem;
+  color: var(--color-text-faded);
+  margin-bottom: 1.5rem;
+}
+
+.github-cta-button {
+  display: inline-flex; /* Para alinhar ícone e texto */
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background-color: var(--color-gray-medium); /* Cor base */
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.github-cta-button:hover {
+  background-color: #555; /* Cor um pouco mais escura no hover */
+  transform: translateY(-2px);
+}
+/* --- FIM DOS ESTILOS CTA --- */
+
+
+/* --- Media Queries --- */
 @media (max-width: 992px) {
   .projetos-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 }
@@ -131,6 +169,10 @@
   .projeto-card-title { font-size: 1.4rem; }
   .projeto-card-description { font-size: 0.9rem; }
   .projeto-card-actions { flex-direction: column; }
+  /* Ajusta CTA no mobile */
+  .github-cta { margin-top: 3rem; padding-top: 1.5rem; }
+  .github-cta p { font-size: 1rem; }
+  .github-cta-button { padding: 0.7rem 1.5rem; font-size: 0.95rem; }
 }
 
 /*
@@ -139,22 +181,34 @@
  ==========================================
 */
 body.light-mode .projetos-section {
-  background-color: var(--color-card-bg); /* Fundo branco */
+  background-color: var(--color-card-bg); 
 }
-
 body.light-mode .projeto-card {
-  background-color: #ffffff; /* Fundo do card branco */
+  background-color: #ffffff; 
   box-shadow: var(--shadow-light);
 }
-
 body.light-mode .projeto-image-container {
-  background-color: #eee; /* Placeholder claro */
+  background-color: #eee; 
 }
-
 body.light-mode .code-button {
-  background-color: #e5e7eb; /* Fundo do botão (cinza claro) */
-  color: #374151; /* Texto (cinza escuro) */
+  background-color: #e5e7eb; 
+  color: #374151; 
 }
 body.light-mode .code-button:hover {
+  background-color: #d1d5db; 
+}
+/* --- NOVO: CTA GitHub no Modo Claro --- */
+body.light-mode .github-cta {
+  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Linha divisória clara */
+}
+body.light-mode .github-cta p {
+  color: var(--color-text-faded); /* Texto cinza escuro */
+}
+body.light-mode .github-cta-button {
+  background-color: #e5e7eb; /* Botão cinza claro */
+  color: #374151; /* Texto cinza escuro */
+}
+body.light-mode .github-cta-button:hover {
   background-color: #d1d5db; /* Cinza um pouco mais escuro */
 }
+/* --- FIM DO CTA MODO CLARO --- */

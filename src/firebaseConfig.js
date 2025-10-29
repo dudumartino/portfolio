@@ -1,47 +1,39 @@
 // src/firebaseConfig.js
-
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-console.log("Auth Domain:", process.env.REACT_APP_FIREBASE_AUTH_DOMAIN);
-console.log("Project ID:", process.env.REACT_APP_FIREBASE_PROJECT_ID);
-console.log("Storage Bucket:", process.env.REACT_APP_FIREBASE_STORAGE_BUCKET);
-console.log(
-  "Sender ID:",
-  process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID ? "OK" : "MISSING!"
-);
-console.log(
-  "App ID:",
-  process.env.REACT_APP_FIREBASE_APP_ID ? "OK" : "MISSING!"
-);
-
+// Lê as variáveis de ambiente (do .env localmente, ou da Vercel no deploy)
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBY1a-T910i-f3pZYzOlL4feqrwl3HgnKs",
+  authDomain: "meu-portfollio.firebaseapp.com",
+  projectId: "meu-portfollio",
+  storageBucket: "meu-portfollio.firebasestorage.app",
+  messagingSenderId: "109973771353",
+  appId: "1:109973771353:web:8bface939e27c9437b0d48"
 };
 
-console.log("Final Firebase Config:", firebaseConfig);
-
-// --- CORREÇÃO AQUI ---
-// Declaramos db fora, mas inicializamos dentro do try
+// Tenta inicializar o Firebase
 let db;
-let app; // Mantemos app se precisar dele depois
-
+let app;
 try {
-  // Inicializamos as variáveis aqui DENTRO
+  // Verifica se todas as chaves essenciais existem ANTES de inicializar
+  if (
+    !firebaseConfig.apiKey ||
+    !firebaseConfig.projectId ||
+    !firebaseConfig.authDomain
+  ) {
+    throw new Error(
+      "Firebase config values are missing. Check your .env file or Vercel environment variables."
+    );
+  }
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
-  console.log("Firebase initialized successfully!");
+  console.log("Firebase initialized successfully!"); // Deixamos este log para confirmar
 } catch (error) {
   console.error("FIREBASE INITIALIZATION FAILED:", error);
-  // Em caso de erro, db permanecerá undefined, mas não quebrará o export
-  // throw error; // Removemos o throw para não parar a aplicação inteira
+  // Define db como null ou undefined para evitar erros posteriores
+  db = null;
 }
-// --- FIM DA CORREÇÃO ---
 
-// Exportamos db no final do arquivo
+// Exporta o db (pode ser null se a inicialização falhar)
 export { db };
