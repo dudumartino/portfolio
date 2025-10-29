@@ -4,8 +4,9 @@ import { ExternalLink, Github } from "lucide-react";
 import "../styles/Projetos.css";
 
 import { db } from "../firebaseConfig";
-// ATUALIZADO: Importamos 'orderBy' mas não vamos usá-lo agora
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+// --- CORREÇÃO AQUI ---
+// Removemos 'query' e 'orderBy' das importações, pois não estão sendo usados
+import { collection, getDocs } from "firebase/firestore";
 
 const Projetos = () => {
   const [projetos, setProjetos] = useState([]);
@@ -19,13 +20,8 @@ const Projetos = () => {
 
         const projetosCollectionRef = collection(db, "projetos");
 
-        // --- CORREÇÃO AQUI ---
-        // Comentamos a linha que ordena
-        // const q = query(projetosCollectionRef, orderBy('order', 'asc'));
-
-        // E usamos a referência direta da coleção (sem ordem específica)
-        const snapshot = await getDocs(projetosCollectionRef); // Mudança aqui
-        // --- FIM DA CORREÇÃO ---
+        // Usamos a referência direta da coleção (sem ordem específica)
+        const snapshot = await getDocs(projetosCollectionRef);
 
         const fetchedProjetos = snapshot.docs.map((doc) => ({
           id: doc.id,
