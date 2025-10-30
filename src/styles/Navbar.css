@@ -1,15 +1,13 @@
-/* src/styles/Navbar.css */
+/* src/styles/Navbar.css (CORRIGIDO PARA LAYOUT HORIZONTAL) */
 
 /* --- Base da Navbar --- */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; /* Garante que o container interno ocupe a largura */
+  justify-content: center; /* Centraliza o container interno */
   padding: 1rem 2rem;
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(8px);
   color: white;
-  
   position: sticky;
   top: 0.5rem;
   margin: 0.5rem 1rem;
@@ -19,18 +17,35 @@
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+/* --- Container Principal (onde aplicamos o flex) --- */
+.navbar-container {
+  width: 100%; /* Ocupa toda a largura da navbar */
+  max-width: 1200px; /* Limita a largura máxima */
+  display: flex;
+  justify-content: space-between; /* ESQUERDA | CENTRO | DIREITA */
+  align-items: center; /* Alinha verticalmente */
+  gap: 1rem; /* Espaço mínimo entre os blocos */
+}
+
 /* --- Esquerda: Logo --- */
 .logo {
   font-size: 2.2rem;
   font-weight: 700;
   color: var(--color-emerald-light);
   cursor: pointer;
+  line-height: 1; 
+  flex-shrink: 0; /* Não deixa o logo encolher */
 }
 
 /* --- Centro: Links Desktop --- */
 .navbar-center {
-  display: flex;
+  display: flex; /* Mantém como flexível */
+  justify-content: center; /* Centraliza os links DENTRO deste container */
+  flex-grow: 1; /* Permite que o centro cresça para ocupar espaço */
   gap: 1.5rem;
+  /* IMPORTANTE: Evita que o centro "empurre" os outros em telas menores */
+  min-width: 0; 
+  overflow: hidden; /* Esconde links se não couberem (antes do breakpoint) */
 }
 .navbar-center button {
   text-decoration: none;
@@ -42,13 +57,18 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0.5rem 0.25rem; /* Menor padding horizontal */
+  white-space: nowrap; /* Não deixa o texto do link quebrar */
 }
 .navbar-center button:hover {
   color: var(--color-emerald-light);
 }
 
 /* --- Direita: Hambúrguer --- */
-.navbar-right { position: relative; }
+.navbar-right { 
+  position: relative; 
+  flex-shrink: 0; /* Não deixa o botão encolher */
+}
 .hamburger {
   background: none;
   border: none;
@@ -58,63 +78,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0.25rem; 
+  z-index: 1001; 
+  position: relative; 
 }
 
-/* --- Menu Dropdown --- */
+/* --- Menu Dropdown (sem alteração significativa aqui) --- */
 .menu-dropdown {
-  display: none;
+  display: none; 
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px); 
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out, transform 0.2s ease-in-out;
   position: absolute;
-  top: 3.5rem; 
-  right: 0;
-  background-color: rgba(31, 41, 55, 0.95); /* (var(--color-gray-dark)) */
+  top: calc(100% + 0.5rem); 
+  right: 0; 
+  background-color: rgba(31, 41, 55, 0.95); 
   backdrop-filter: blur(10px);
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  flex-direction: column;
-  gap: 1rem;
   padding: 1rem;
-  min-width: 220px; 
+  min-width: 240px; 
+  z-index: 1000;
 }
-.menu-dropdown.open { display: flex; }
+.menu-dropdown.open { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
 
-/* --- Conteúdo do Dropdown --- */
-.mobile-links-section {
+/* --- Conteúdo do Dropdown (sem alteração significativa) --- */
+.mobile-actions-section { /* Renomeado para clareza */
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem; 
 }
-.mobile-links-section button {
-  background: none;
-  border: none;
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: left;
-  padding: 0.5rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.mobile-links-section button:hover {
-  background-color: var(--color-emerald-dark);
-}
-
-.mobile-divider {
-  border: none;
-  border-top: 1px solid var(--color-gray-medium);
-  margin: 0.5rem 0;
-}
-
-.mobile-actions-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
 .cv-button {
   background-color: var(--color-emerald-light);
-  color: #1f2937; /* Texto escuro no botão verde */
+  color: #1f2937; 
   padding: 0.75rem 1rem;
   border: none;
   border-radius: 6px;
@@ -128,11 +132,7 @@
   gap: 0.5rem;
   font-size: 1rem;
 }
-.cv-button:hover {
-  background-color: #059669; 
-  color: white;
-}
-
+.cv-button:hover { background-color: #059669; color: white; }
 .action-item-mobile {
   display: flex;
   justify-content: space-between;
@@ -141,22 +141,41 @@
   font-size: 1rem;
   font-weight: 500;
 }
-
-.switch-container {
+.switch-container { cursor: pointer; font-size: 1.5rem; text-align: center; }
+.lang-selector-inner { position: relative; display: flex; align-items: center; }
+.lang-button {
+  background-color: var(--color-gray-dark);
+  padding: 0.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1.5rem; 
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  border: none; 
   cursor: pointer;
-  font-size: 1.5rem;
-  text-align: center;
 }
+.lang-button .flag-emoji { font-size: inherit; }
+.lang-dropdown { /* Dropdown de idioma DENTRO do menu */
+  position: absolute;
+  top: 0; 
+  right: calc(100% + 0.5rem); 
+  background-color: var(--color-gray-dark);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-medium);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  z-index: 1010; 
+  min-width: 160px; 
+}
+.lang-dropdown button { /* Botões dentro do dropdown de idioma */
+  /* ... estilos ... */
+  background-color: transparent; color: white; padding: 0.5rem 1rem; border-radius: var(--border-radius-md); text-align: left; display: flex; align-items: center; gap: 0.75rem; transition: background-color 0.3s ease; font-size: 0.9rem; border: none;
+}
+.lang-dropdown button .flag-emoji { font-size: 1.2rem; }
+.lang-dropdown button:hover { background-color: var(--color-emerald-dark); }
 
-.language-select {
-  border: 1px solid var(--color-gray-medium);
-  border-radius: 6px;
-  padding: 0.3rem 0.5rem;
-  background: var(--color-gray-dark);
-  color: white;
-  cursor: pointer;
-  font-size: 1.2rem; 
-}
 
 /* --- Media Query --- */
 @media (max-width: 768px) {
@@ -169,59 +188,57 @@
   }
 }
 
-/*
- ==========================================
- === ATUALIZAÇÃO PARA O MODO CLARO (FINAL) ===
- ==========================================
-*/
+/* --- Estilos Modo Claro (sem alteração necessária aqui) --- */
+/* ... (regras 'body.light-mode ...' continuam iguais) ... */
 body.light-mode .navbar {
-  background-color: rgba(255, 255, 255, 0.7); /* Fundo branco/blur */
-  color: var(--color-text); /* Texto escuro */
+  background-color: rgba(255, 255, 255, 0.7); 
+  color: var(--color-text); 
   box-shadow: var(--shadow-light);
 }
-
 body.light-mode .navbar-center button {
-  color: var(--color-text-faded); /* Links do centro em cinza escuro */
+  color: var(--color-text-faded); 
 }
 body.light-mode .navbar-center button:hover {
-  color: var(--color-text); /* Links ficam pretos no hover */
+  color: var(--color-text); 
 }
-
 body.light-mode .hamburger {
-  color: var(--color-text); /* Ícone hambúrguer escuro */
+  color: var(--color-text); 
 }
-
 body.light-mode .menu-dropdown {
-  background-color: rgba(255, 255, 255, 0.95); /* Fundo do menu branco */
+  background-color: rgba(255, 255, 255, 0.98); 
   box-shadow: var(--shadow-medium);
 }
-
 body.light-mode .mobile-links-section button {
-  color: var(--color-text-faded); /* Links do menu escuros */
+  color: var(--color-text-faded); 
 }
 body.light-mode .mobile-links-section button:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* Fundo cinza claro no hover */
+  background-color: rgba(0, 0, 0, 0.05); 
   color: var(--color-text);
 }
-
 body.light-mode .mobile-divider {
-  border-top: 1px solid rgba(0, 0, 0, 0.1); /* Divisor claro */
+  border-top: 1px solid rgba(0, 0, 0, 0.1); 
 }
-
 body.light-mode .action-item-mobile {
-  color: var(--color-text); /* Texto das ações escuro */
+  color: var(--color-text); 
 }
-
 body.light-mode .cv-button {
-  background-color: var(--color-emerald-dark); /* Botão CV Verde Escuro */
-  color: white; /* Texto branco */
+  background-color: var(--color-emerald-dark); 
+  color: white; 
 }
 body.light-mode .cv-button:hover {
-  background-color: #064e3b; /* Verde mais escuro */
+  background-color: #064e3b; 
 }
-
-body.light-mode .language-select {
-  border: 1px solid #ccc;
-  background: #f9fafb; /* Fundo do select claro */
-  color: var(--color-text); /* Texto do select escuro */
+body.light-mode .lang-button {
+  background-color: #e5e7eb; /* Cinza claro */
+}
+body.light-mode .lang-dropdown {
+  background-color: #f3f4f6; /* Cinza bem claro */
+  box-shadow: var(--shadow-light);
+}
+body.light-mode .lang-dropdown button {
+  color: var(--color-text); /* Texto escuro */
+}
+body.light-mode .lang-dropdown button:hover {
+  background-color: var(--color-emerald-dark);
+  color: white;
 }

@@ -1,0 +1,58 @@
+{
+  "navbar": {
+    "brand": "EM",
+    "about": "Sobre Mim",
+    "skills": "Habilidades",
+    "projects": "Projetos",
+    "contact": "Contato",
+    "downloadCV": "Baixar CV",
+    "theme": "Tema",
+    "language": "Idioma",
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "home": {
+    "greeting": "Eu sou o",
+    "name": "< Eduardo Martino />",
+    "description_part1": "Desenvolvedor Fullstack",
+    "description_part2": ", transformo ideias em experiências digitais! Desenvolvo sites modernos, com interfaces otimizadas e envolventes."
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "p1": "Olá! Eu sou o Eduardo, um programador fullstack apaixonado por tecnologia. Atualmente, curso Ciência da Computação na PUC Minas, onde mergulho diariamente nos desafios e inovações que movem o mundo digital.",
+    "p2": "Minha especialidade é o desenvolvimento fullstack. Tenho conhecimentos e projetos sólidos na criação de soluções com React, JavaScript, HTML/CSS, .NET e Git, construindo desde interfaces dinâmicas até back-ends robustos.",
+    "p3": "Além do código, sou um grande entusiasta de jogos, séries, filmes e músicas. Acredito que essa imersão em boas histórias alimenta minha criatividade e minha capacidade de pensar \"fora da caixa\" para resolver problemas."
+  },
+  "skills": {
+    "title": "Skills",
+    "softTitle": "Soft Skills",
+    "hardTitle": "Hard Skills",
+    "communication": "Comunicação",
+    "communicationDesc": "Articular ideias de forma clara e objetiva.",
+    "problemSolving": "Resolução de Problemas",
+    "problemSolvingDesc": "Foco em encontrar soluções eficientes e criativas.",
+    "teamwork": "Trabalho em Equipe",
+    "teamworkDesc": "Colaborativo, proativo e aberto a feedbacks.",
+    "agile": "Metodologias Ágeis",
+    "agileDesc": "Experiência em processos como Scrum e Kanban.",
+    "hardIntro": "Minhas principais ferramentas e tecnologias:"
+  },
+  "projects": {
+    "title": "Projetos",
+    "loading": "Carregando projetos...",
+    "error": "Não foi possível carregar os projetos. Tente novamente mais tarde.",
+    "errorConfig": "Erro na configuração do Firebase. Verifique as credenciais.",
+    "errorIndex": "Erro ao ordenar: Índice do Firestore ausente. Verifique o console do navegador (F12) para o link de criação do índice.",
+    "noProjects": "Nenhum projeto encontrado.",
+    "learnMore": "Saiba Mais",
+    "viewCode": "Ver Código",
+    "ctaText": "Interessado em ver mais projetos?",
+    "ctaButton": "Clique aqui"
+  },
+  "contact": {
+    "title": "Vamos nos conectar!",
+    "intro": "Estou disponível para novas oportunidades e colaborações.",
+    "whatsappMessage": "Olá, vi seu portfólio e gostaria de um orçamento para um projeto."
+  }
+}

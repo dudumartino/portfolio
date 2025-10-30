@@ -1,12 +1,13 @@
 // src/components/Projetos.jsx
-import React, { useEffect, useState } from "react";
-import { ExternalLink, Github } from "lucide-react";
-import "../styles/Projetos.css";
-
-import { db } from "../firebaseConfig";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import React, { useEffect, useState } from 'react';
+import { ExternalLink, Github } from 'lucide-react';
+import '../styles/Projetos.css'; 
+import { db } from '../firebaseConfig'; 
+import { collection, getDocs, query, orderBy } from 'firebase/firestore'; 
+import { useTranslation } from 'react-i18next'; // Importa
 
 const Projetos = () => {
+  const { t } = useTranslation(); // Usa
   const [projetos, setProjetos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,126 +15,110 @@ const Projetos = () => {
   useEffect(() => {
     const fetchProjetos = async () => {
       if (!db) {
-        setError("Erro na configuração do Firebase. Verifique as credenciais.");
+        setError(t('projects.errorConfig')); // Usa t()
         setLoading(false);
-        return;
+        return; 
       }
       try {
-        setLoading(true);
-        const projetosCollectionRef = collection(db, "projetos");
-        const q = query(projetosCollectionRef, orderBy("order", "asc"));
-        const snapshot = await getDocs(q);
-
-        const fetchedProjetos = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-
-        setProjetos(fetchedProjetos);
-        setError(null);
+        setLoading(true); 
+        const projetosCollectionRef = collection(db, 'projetos');
+        const q = query(projetosCollectionRef, orderBy('order', 'asc')); 
+        const snapshot = await getDocs(q); 
+        const fetchedProjetos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProjetos(fetchedProjetos); 
+        setError(null); 
       } catch (err) {
         console.error("Erro ao buscar ou ordenar projetos:", err);
-        if (err.code === "failed-precondition") {
-          setError(
-            <>
-              Erro ao ordenar: Índice do Firestore ausente. Verifique o console
-              do navegador (F12) para o link de criação do índice.
-            </>
-          );
+        if (err.code === 'failed-precondition') {
+           setError(t('projects.errorIndex')); // Usa t()
         } else {
-          setError(
-            "Não foi possível carregar os projetos. Verifique a conexão ou as regras do Firestore."
-          );
+           setError(t('projects.error')); // Usa t()
         }
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
-    fetchProjetos();
-  }, []);
+    fetchProjetos(); 
+    // Adiciona t como dependência se usar t() dentro do useEffect (para erros)
+  }, [t]); 
 
-  // --- Renderização condicional ---
   if (loading) {
-    /* ... */
+    return (
+      <section id="projetos" className="projetos-section">
+        <h2 className="projetos-title">{t('projects.title')}</h2> {/* Usa t() */}
+        <p className="loading-message">{t('projects.loading')}</p> {/* Usa t() */}
+      </section>
+    );
   }
+
   if (error) {
-    /* ... */
+    return (
+      <section id="projetos" className="projetos-section">
+        <h2 className="projetos-title">{t('projects.title')}</h2> {/* Usa t() */}
+        <p className="error-message">{error}</p> {/* Erro já está traduzido */}
+      </section>
+    );
   }
 
   return (
     <section id="projetos" className="projetos-section">
-      <h2 className="projetos-title">Projetos</h2>
-
-      {/* Grid de Projetos */}
+      <h2 className="projetos-title">{t('projects.title')}</h2> {/* Usa t() */}
+      
       {projetos.length > 0 ? (
         <div className="projetos-grid">
           {projetos.map((projeto) => (
-            <ProjetoCard key={projeto.id} projeto={projeto} />
+            <ProjetoCard key={projeto.id} projeto={projeto} t={t} /> 
           ))}
         </div>
       ) : (
-        !loading &&
-        !error && <p className="loading-message">Nenhum projeto encontrado.</p>
+        !loading && !error && <p className="loading-message">{t('projects.noProjects')}</p>  /* Usa t() */
       )}
 
-      {/* --- NOVO: CTA PARA O GITHUB --- */}
       <div className="github-cta">
-        <p>Interessado em ver mais projetos?</p>
-        <a
-          href="https://github.com/dudumartino" // <-- COLOQUE SEU LINK DO GITHUB AQUI
-          target="_blank"
-          rel="noopener noreferrer"
+        <p>{t('projects.ctaText')}</p> {/* Usa t() */}
+        <a 
+          href="https://github.com/dudumartino" 
+          target="_blank" 
+          rel="noopener noreferrer" 
           className="github-cta-button"
         >
           <Github size={18} />
-          <span>Clique aqui</span>
+          <span>{t('projects.ctaButton')}</span> {/* Usa t() */}
         </a>
       </div>
-      {/* --- FIM DO NOVO CTA --- */}
     </section>
   );
 };
 
-// --- ProjetoCard (sem alteração) ---
-const ProjetoCard = ({ projeto }) => (
-  // ... (código do ProjetoCard continua igual) ...
-  <div className="projeto-card">
+// Passa t para o ProjetoCard
+const ProjetoCard = ({ projeto, t }) => ( 
+ <div className="projeto-card">
     <div className="projeto-image-container">
-      <img
-        src={projeto.imageUrl}
-        alt={`Imagem do ${projeto.title}`}
-        className="projeto-image"
-      />
+      <img src={projeto.imageUrl} alt={`Imagem do ${projeto.title}`} className="projeto-image" />
     </div>
     <div className="projeto-content">
       <h3 className="projeto-card-title">{projeto.title}</h3>
       <p className="projeto-card-description">{projeto.description}</p>
       <div className="projeto-card-actions">
-        <a
-          href={projeto.liveLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+        <a 
+          href={projeto.liveLink || '#'} 
+          target="_blank" 
+          rel="noopener noreferrer" 
           className="projeto-button live-button"
-          style={{
-            pointerEvents: projeto.liveLink ? "auto" : "none",
-            opacity: projeto.liveLink ? 1 : 0.5,
-          }}
+          style={{ pointerEvents: projeto.liveLink ? 'auto' : 'none', opacity: projeto.liveLink ? 1 : 0.5 }}
         >
           <ExternalLink size={18} />
-          <span>Saiba Mais</span>
+          <span>{t('projects.learnMore')}</span> {/* Usa t() */}
         </a>
-        <a
-          href={projeto.repoLink || "#"}
-          target="_blank"
-          rel="noopener noreferrer"
+        <a 
+          href={projeto.repoLink || '#'} 
+          target="_blank" 
+          rel="noopener noreferrer" 
           className="projeto-button code-button"
-          style={{
-            pointerEvents: projeto.repoLink ? "auto" : "none",
-            opacity: projeto.repoLink ? 1 : 0.5,
-          }}
+           style={{ pointerEvents: projeto.repoLink ? 'auto' : 'none', opacity: projeto.repoLink ? 1 : 0.5 }}
         >
           <Github size={18} />
-          <span>Ver Código</span>
+          <span>{t('projects.viewCode')}</span> {/* Usa t() */}
         </a>
       </div>
     </div>

@@ -1,0 +1,58 @@
+{
+  "navbar": {
+    "brand": "EM",
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "downloadCV": "Descargar CV",
+    "theme": "Tema",
+    "language": "Idioma",
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español"
+  },
+  "home": {
+    "greeting": "Soy",
+    "name": "< Eduardo Martino />",
+    "description_part1": "Desarrollador Fullstack",
+    "description_part2": ", ¡transformo ideas en experiencias digitales! Desarrollo sitios web modernos, con interfaces optimizadas y atractivas."
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "p1": "¡Hola! Soy Eduardo, un desarrollador fullstack apasionado por la tecnología. Actualmente estudio Ciencias de la Computación en PUC Minas, un viaje que me permite sumergirme a diario en los desafíos e innovaciones que impulsan el mundo digital.",
+    "p2": "Mi especialidad es el desarrollo fullstack. Tengo sólidos conocimientos y proyectos creando soluciones completas, desde la construcción de interfaces de usuario dinámicas y responsivas con React, JavaScript, HTML/CSS, hasta el desarrollo de back-ends robustos y eficientes con la plataforma .NET. Git es una herramienta constante en mi flujo de trabajo, garantizando la integridad y colaboración en cada proyecto.",
+    "p3": "Más allá del código, soy un gran entusiasta de los juegos, series, películas y música. Creo que sumergirme en buenas historias y diferentes formas de arte alimenta mi creatividad y mi capacidad de pensar \"fuera de la caja\" para resolver problemas."
+  },
+  "skills": {
+    "title": "Habilidades",
+    "softTitle": "Habilidades Blandas",
+    "hardTitle": "Habilidades Técnicas",
+    "communication": "Comunicación",
+    "communicationDesc": "Articular ideas de forma clara y objetiva.",
+    "problemSolving": "Resolución de Problemas",
+    "problemSolvingDesc": "Enfoque en encontrar soluciones eficientes y creativas.",
+    "teamwork": "Trabajo en Equipo",
+    "teamworkDesc": "Colaborativo, proactivo y abierto a comentarios.",
+    "agile": "Metodologías Ágiles",
+    "agileDesc": "Experiencia en procesos como Scrum y Kanban.",
+    "hardIntro": "Mis principales herramientas y tecnologías:"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "loading": "Cargando proyectos...",
+    "error": "No se pudieron cargar los proyectos. Inténtalo de nuevo más tarde.",
+    "errorConfig": "Error en la configuración de Firebase. Verifica las credenciales.",
+    "errorIndex": "Error al ordenar: Índice de Firestore ausente. Verifica la consola del navegador (F12) para el enlace de creación del índice.",
+    "noProjects": "No se encontraron proyectos.",
+    "learnMore": "Saber Más",
+    "viewCode": "Ver Código",
+    "ctaText": "¿Interesado en ver más proyectos?",
+    "ctaButton": "Haz clic aquí"
+  },
+  "contact": {
+    "title": "¡Conectémonos!",
+    "intro": "Estoy disponible para nuevas oportunidades y colaboraciones.",
+    "whatsappMessage": "Hola, vi tu portafolio y me gustaría una cotización para un proyecto."
+  }
+}

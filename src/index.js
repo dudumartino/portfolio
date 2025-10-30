@@ -1,10 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css"; // Importa nosso CSS global
-import App from "./App"; // Importa nosso componente principal
+// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css'; 
+import App from './App';
+import './i18n'; // Importa a configuração para inicializar o i18next
 
-// Encontra a 'div' principal no HTML e inicia o React nela
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />

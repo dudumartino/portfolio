@@ -1,0 +1,58 @@
+{
+  "navbar": {
+    "brand": "EM",
+    "about": "About Me",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "downloadCV": "Download CV",
+    "theme": "Theme",
+    "language": "Language",
+    "portuguese": "Portuguese",
+    "english": "English",
+    "spanish": "Spanish"
+  },
+  "home": {
+    "greeting": "I am",
+    "name": "< Eduardo Martino />",
+    "description_part1": "Fullstack Developer",
+    "description_part2": ", I transform ideas into digital experiences! I develop modern websites with optimized and engaging interfaces."
+  },
+  "about": {
+    "title": "About Me",
+    "p1": "Hi! I'm Eduardo, a fullstack developer deeply passionate about technology. I'm currently studying Computer Science at PUC Minas, a journey that allows me to dive daily into the challenges and innovations driving the digital world.",
+    "p2": "My specialty is fullstack development. I have solid knowledge and projects creating complete solutions, from building dynamic and responsive user interfaces with React, JavaScript, HTML/CSS, to developing robust and efficient back-ends with the .NET platform. Git is a constant tool in my workflow, ensuring integrity and collaboration in every project.",
+    "p3": "Beyond code, I'm a big enthusiast of games, series, movies, and music. I believe that immersing myself in good stories and different art forms fuels my creativity and my ability to think \"outside the box\" to solve problems."
+  },
+  "skills": {
+    "title": "Skills",
+    "softTitle": "Soft Skills",
+    "hardTitle": "Hard Skills",
+    "communication": "Communication",
+    "communicationDesc": "Articulate ideas clearly and objectively.",
+    "problemSolving": "Problem Solving",
+    "problemSolvingDesc": "Focus on finding efficient and creative solutions.",
+    "teamwork": "Teamwork",
+    "teamworkDesc": "Collaborative, proactive, and open to feedback.",
+    "agile": "Agile Methodologies",
+    "agileDesc": "Experience in processes like Scrum and Kanban.",
+    "hardIntro": "My main tools and technologies:"
+  },
+  "projects": {
+    "title": "Projects",
+    "loading": "Loading projects...",
+    "error": "Could not load projects. Please try again later.",
+    "errorConfig": "Error in Firebase configuration. Check credentials.",
+    "errorIndex": "Ordering error: Firestore index missing. Check the browser console (F12) for the index creation link.",
+    "noProjects": "No projects found.",
+    "learnMore": "Learn More",
+    "viewCode": "View Code",
+    "ctaText": "Interested in seeing more projects?",
+    "ctaButton": "Click here"
+  },
+  "contact": {
+    "title": "Let's connect!",
+    "intro": "I'm available for new opportunities and collaborations.",
+    "whatsappMessage": "Hello, I saw your portfolio and would like a quote for a project."
+  }
+}
