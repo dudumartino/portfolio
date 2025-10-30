@@ -1,42 +1,42 @@
 // src/components/Navbar.jsx
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Download } from 'lucide-react';
-import '../styles/Navbar.css';
-import { useTranslation } from 'react-i18next'; 
+import React, { useState, useEffect } from "react";
+import { Menu, X, Download } from "lucide-react";
+import "../styles/Navbar.css";
+import { useTranslation } from "react-i18next";
 
 const Navbar = ({ onScrollTo }) => {
-  const { t, i18n } = useTranslation(); 
-  
+  const { t, i18n } = useTranslation();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false); 
+  const [darkMode, setDarkMode] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   useEffect(() => {
-    document.body.className = darkMode ? 'light-mode' : '';
+    document.body.className = darkMode ? "light-mode" : "";
   }, [darkMode]);
 
   // Links de navegação definidos aqui para usar no centro
   const navLinks = [
-    { id: 'sobre', key: 'navbar.about' },
-    { id: 'skills', key: 'navbar.skills' },
-    { id: 'projetos', key: 'navbar.projects' },
-    { id: 'contato', key: 'navbar.contact' },
+    { id: "sobre", key: "navbar.about" },
+    { id: "skills", key: "navbar.skills" },
+    { id: "projetos", key: "navbar.projects" },
+    { id: "contato", key: "navbar.contact" },
   ];
 
   const handleNavClick = (id) => {
     onScrollTo(id);
-    setIsMenuOpen(false); 
+    setIsMenuOpen(false);
   };
 
   const getFlagEmoji = (lang) => {
-    if (lang.startsWith('en')) return '🇺🇸'; 
-    if (lang.startsWith('es')) return '🇪🇸';
-    return '🇧🇷'; 
+    if (lang.startsWith("en")) return "🇺🇸";
+    if (lang.startsWith("es")) return "🇪🇸";
+    return "🇧🇷";
   };
 
   const handleLangChange = (langCode) => {
-    i18n.changeLanguage(langCode); 
-    setIsLangOpen(false); 
+    i18n.changeLanguage(langCode);
+    setIsLangOpen(false);
   };
 
   const handleThemeToggle = () => {
@@ -46,48 +46,48 @@ const Navbar = ({ onScrollTo }) => {
   // Componente interno para as AÇÕES (CV, Tema, Idioma)
   // Renomeado para ficar mais claro
   const MenuActions = () => (
-    <div className="mobile-actions-section"> 
-      <a 
-        href="https://firebasestorage.googleapis.com/v0/b/meu-portfolio.appspot.com/o/EduardoMartino_CV.pdf?alt=media&token=d55383f9-6bc8-4f81-a836-8c4d293f0b4d" // Use seu link
+    <div className="mobile-actions-section">
+      <a
+        href="https://firebasestorage.googleapis.com/v0/b/meu-portfollio.firebasestorage.app/o/CV-Eduardo-2025.2.pdf?alt=media&token=41536576-45fa-4158-b90b-ae8e6f61e6fb" // Use seu link
         target="_blank"
         rel="noopener noreferrer"
         className="navbar-action-button cv-button"
       >
         <Download size={20} />
-        {t('navbar.downloadCV')} 
+        {t("navbar.downloadCV")}
       </a>
 
-      <div className="action-item-mobile"> 
-        <span>{t('navbar.theme')}</span>
-        <button 
-          className="theme-switch" 
+      <div className="action-item-mobile">
+        <span>{t("navbar.theme")}</span>
+        <button
+          className="theme-switch"
           onClick={handleThemeToggle}
-          aria-label={t('navbar.theme')}
+          aria-label={t("navbar.theme")}
         >
-          {darkMode ? '☀️' : '🌙'}
+          {darkMode ? "☀️" : "🌙"}
         </button>
       </div>
 
-      <div className="action-item-mobile lang-selector"> 
-        <span>{t('navbar.language')}</span>
+      <div className="action-item-mobile lang-selector">
+        <span>{t("navbar.language")}</span>
         <div className="lang-selector-inner">
-          <button 
-            className="lang-button" 
+          <button
+            className="lang-button"
             onClick={() => setIsLangOpen(!isLangOpen)}
-            aria-label={t('navbar.language')}
+            aria-label={t("navbar.language")}
           >
-            <span className="flag-emoji">{getFlagEmoji(i18n.language)}</span> 
+            <span className="flag-emoji">{getFlagEmoji(i18n.language)}</span>
           </button>
           {isLangOpen && (
             <div className="lang-dropdown">
-              <button onClick={() => handleLangChange('pt')}>
-                <span className="flag-emoji">🇧🇷</span> {t('navbar.portuguese')}
+              <button onClick={() => handleLangChange("pt")}>
+                <span className="flag-emoji">🇧🇷</span> {t("navbar.portuguese")}
               </button>
-              <button onClick={() => handleLangChange('en')}>
-                <span className="flag-emoji">🇺🇸</span> {t('navbar.english')}
+              <button onClick={() => handleLangChange("en")}>
+                <span className="flag-emoji">🇺🇸</span> {t("navbar.english")}
               </button>
-              <button onClick={() => handleLangChange('es')}>
-                <span className="flag-emoji">🇪🇸</span> {t('navbar.spanish')}
+              <button onClick={() => handleLangChange("es")}>
+                <span className="flag-emoji">🇪🇸</span> {t("navbar.spanish")}
               </button>
             </div>
           )}
@@ -100,21 +100,21 @@ const Navbar = ({ onScrollTo }) => {
     <nav className="navbar">
       <div className="navbar-container">
         {/* Esquerda: Logo EM */}
-        <span className="logo" onClick={() => handleNavClick('home')}>
-          {t('navbar.brand')}
+        <span className="logo" onClick={() => handleNavClick("home")}>
+          {t("navbar.brand")}
         </span>
 
         {/* Centro: Links Desktop */}
         <div className="navbar-center">
           {navLinks.map((link) => (
-             <button key={link.id} onClick={() => handleNavClick(link.id)}>
-               {t(link.key)}
-             </button>
+            <button key={link.id} onClick={() => handleNavClick(link.id)}>
+              {t(link.key)}
+            </button>
           ))}
         </div>
 
         {/* Direita: Hambúrguer e Dropdown */}
-        <div className="navbar-right"> 
+        <div className="navbar-right">
           <button
             className="hamburger"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -124,16 +124,16 @@ const Navbar = ({ onScrollTo }) => {
           </button>
 
           {/* O Menu Dropdown */}
-          <div className={`menu-dropdown ${isMenuOpen ? 'open' : ''}`}>
+          <div className={`menu-dropdown ${isMenuOpen ? "open" : ""}`}>
             {/* --- ATUALIZAÇÃO PRINCIPAL AQUI --- */}
             {/* Removemos os links de navegação daqui */}
             {/* Removemos o <hr /> daqui */}
-            
+
             {/* Mantemos APENAS as Ações */}
-            <MenuActions /> 
+            <MenuActions />
             {/* --- FIM DA ATUALIZAÇÃO --- */}
-          </div> 
-        </div> 
+          </div>
+        </div>
       </div>
     </nav>
   );
