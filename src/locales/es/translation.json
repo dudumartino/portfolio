@@ -21,7 +21,7 @@
   "about": {
     "title": "Sobre Mí",
     "p1": "¡Hola! Soy Eduardo, un desarrollador fullstack apasionado por la tecnología. Actualmente estudio Ciencias de la Computación en PUC Minas, un viaje que me permite sumergirme a diario en los desafíos e innovaciones que impulsan el mundo digital.",
-    "p2": "Mi especialidad es el desarrollo fullstack. Tengo sólidos conocimientos y proyectos creando soluciones completas, desde la construcción de interfaces de usuario dinámicas y responsivas con React, JavaScript, HTML/CSS, hasta el desarrollo de back-ends robustos y eficientes con la plataforma .NET. Git es una herramienta constante en mi flujo de trabajo, garantizando la integridad y colaboración en cada proyecto.",
+    "p2": "Mi especialidad es el desarrollo fullstack. Tengo sólidos conocimientos y proyectos creando soluciones completas, desde la construcción de interfaces de usuario dinámicas y responsivas con React, JavaScript, HTML/CSS, hasta el desarrollo de back-ends eficientes con la plataforma .NET. Git es una herramienta constante en mi flujo de trabajo, garantizando la integridad y colaboración en cada proyecto.",
     "p3": "Más allá del código, soy un gran entusiasta de los juegos, series, películas y música. Creo que sumergirme en buenas historias y diferentes formas de arte alimenta mi creatividad y mi capacidad de pensar \"fuera de la caja\" para resolver problemas."
   },
   "skills": {

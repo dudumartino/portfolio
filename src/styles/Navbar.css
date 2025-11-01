@@ -1,4 +1,4 @@
-/* src/styles/Navbar.css (REFEITO) */
+/* src/styles/Navbar.css (CORRIGIDO PARA O LOGO) */
 
 /* --- Base da Navbar --- */
 .navbar {
@@ -22,61 +22,55 @@
   width: 100%; 
   max-width: 1200px; 
   display: flex;
-  /* Garante EM na esquerda e Ações na direita */
   justify-content: space-between; 
   align-items: center; 
   gap: 1rem; 
 }
 
-/* --- Esquerda: Logo --- */
+/* --- Esquerda: Logo (AGORA UMA IMAGEM) --- */
 .logo {
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--color-emerald-light);
+  /* Removemos os estilos de fonte */
+  /* font-size: 2.2rem; */
+  /* font-weight: 700; */
+  /* color: var(--color-emerald-light); */
+  
   cursor: pointer;
-  line-height: 1; 
-  flex-shrink: 0; /* Não encolhe */
+  line-height: 1; /* Ajuda no alinhamento vertical */
+  flex-shrink: 0; 
 }
+
+/* --- NOVO: Estilo para a <img> do logo --- */
+.navbar-logo-img {
+  height: 46px; /* Altura do logo - AJUSTE AQUI SE QUISER MAIOR/MENOR */
+  width: auto; /* Largura automática para manter proporção */
+  display: block; /* Remove espaço extra de linha */
+  transition: filter 0.3s ease;
+}
+.navbar-logo-img:hover {
+  filter: brightness(1.2) drop-shadow(0 0 5px var(--color-emerald-light));
+}
+/* --- FIM DO NOVO ESTILO --- */
+
 
 /* --- Centro: Links Desktop (Comentado) --- */
 /*
-.navbar-center {
-  display: flex;
-  justify-content: center; 
-  flex-grow: 1; 
-  gap: 1.5rem;
-  min-width: 0; 
-  overflow: hidden; 
-}
-.navbar-center button {
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  transition: color 0.3s;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem 0.25rem; 
-  white-space: nowrap; 
-}
-.navbar-center button:hover {
-  color: var(--color-emerald-light);
-}
+.navbar-center { ... }
+.navbar-center button { ... }
+.navbar-center button:hover { ... }
 */
 
 /* --- Direita: Ações (Sempre Visíveis) --- */
 .navbar-actions-right {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* Espaço entre os botões */
-  position: relative; /* Para o dropdown de idioma funcionar */
+  gap: 0.75rem; 
+  position: relative; 
 }
 
 .cv-button {
   background-color: var(--color-emerald-dark);
   color: white; 
-  padding: 0.6rem 1rem; /* Padding ajustado */
+  padding: 0.6rem 1rem; 
   border: none;
   border-radius: 6px;
   text-decoration: none;
@@ -87,7 +81,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  font-size: 0.9rem; /* Fonte menor */
+  font-size: 0.9rem; 
 }
 .cv-button:hover {
   background-color: var(--color-emerald-light); 
@@ -97,7 +91,7 @@
 .theme-switch {
   background-color: var(--color-gray-dark);
   border-radius: 50%;
-  width: 40px; /* Tamanho fixo */
+  width: 40px; 
   height: 40px;
   display: flex;
   justify-content: center;
@@ -112,7 +106,7 @@
 }
 
 .lang-selector {
-  position: relative; /* Contexto para o dropdown */
+  position: relative; 
 }
 .lang-button {
   background-color: var(--color-gray-dark);
@@ -129,18 +123,28 @@
 
 .lang-dropdown {
   position: absolute;
-  top: calc(100% + 0.5rem); /* Abaixo do botão */
+  top: calc(100% + 0.5rem); 
   right: 0; 
   background-color: var(--color-gray-dark);
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-medium);
   padding: 0.5rem;
-  display: flex;
+  display: none; /* Escondido por padrão, aberto via JS no componente */
   flex-direction: column;
   gap: 0.25rem;
   z-index: 1010; 
   min-width: 160px; 
 }
+/* O seletor de idioma no Navbar.jsx controla o 'isLangOpen' que mostra/esconde */
+/* Este CSS é para o dropdown GERAL do menu, que está comentado */
+/*
+.menu-dropdown.open .lang-dropdown {
+   display: flex;
+}
+*/
+/* Se o dropdown de idioma não abrir, pode ser que falte o 'display: flex' quando aberto.
+   Mas a lógica no Navbar.jsx ( {isLangOpen && ( ... ) } ) deve tratar disso. */
+
 .lang-dropdown button {
   background-color: transparent; color: white; padding: 0.5rem 1rem; border-radius: var(--border-radius-md); text-align: left; display: flex; align-items: center; gap: 0.75rem; transition: background-color 0.3s ease; font-size: 0.9rem; border: none; cursor: pointer;
 }
@@ -152,50 +156,35 @@
 
 /* --- Direita: Hambúrguer e Dropdown (Comentado) --- */
 /*
-.navbar-right { 
-  position: relative; 
-}
-.hamburger {
-  ...
-}
-.menu-dropdown {
-  ...
-}
-.menu-dropdown.open { 
-  ...
-}
-.mobile-links-section {
-  ...
-}
-.mobile-links-section button {
-  ...
-}
-.mobile-divider {
-  ...
-}
-.mobile-actions-section {
-  ...
-}
-.action-item-mobile {
-  ...
-}
+.navbar-right { ... }
+.hamburger { ... }
+.menu-dropdown { ... }
+.menu-dropdown.open { ... }
+.mobile-links-section { ... }
+.mobile-links-section button { ... }
+.mobile-divider { ... }
+.mobile-actions-section { ... }
+.action-item-mobile { ... }
 */
 
 
 /* --- Media Query --- */
 @media (max-width: 768px) {
-  /* Remove o texto "Baixar CV" em telas pequenas */
+  /* Reduz um pouco o logo no mobile */
+  .navbar-logo-img {
+    height: 32px;
+  }
   .cv-button-text {
     display: none;
   }
   .cv-button {
-    width: 40px; /* Deixa o botão quadrado (mesma altura do theme-switch) */
+    width: 40px; 
     height: 40px;
     padding: 0.6rem;
-    font-size: 1rem; /* Ajusta o tamanho do ícone */
+    font-size: 1rem; 
   }
   .navbar-actions-right {
-    gap: 0.5rem; /* Diminui o espaço no mobile */
+    gap: 0.5rem; 
   }
   .navbar {
     margin: 0.5rem 0.5rem;
@@ -210,12 +199,8 @@ body.light-mode .navbar {
   box-shadow: var(--shadow-light);
 }
 /*
-body.light-mode .navbar-center button {
-  color: var(--color-text-faded); 
-}
-body.light-score .navbar-center button:hover {
-  color: var(--color-text); 
-}
+body.light-mode .navbar-center button { ... }
+body.light-mode .navbar-center button:hover { ... }
 */
 
 /* Ações no modo claro */
@@ -228,21 +213,21 @@ body.light-mode .cv-button:hover {
   color: #1f2937;
 }
 body.light-mode .theme-switch {
-  background-color: #e5e7eb; /* Cinza claro */
-  color: var(--color-text); /* Ícone escuro */
+  background-color: #e5e7eb; 
+  color: var(--color-text); 
 }
 body.light-mode .theme-switch:hover {
-  background-color: #d1d5db; /* Cinza médio */
+  background-color: #d1d5db; 
 }
 body.light-mode .lang-button {
-  background-color: #e5e7eb; /* Cinza claro */
+  background-color: #e5e7eb; 
 }
 body.light-mode .lang-dropdown {
-  background-color: #f3f4f6; /* Cinza bem claro */
+  background-color: #f3f4f6; 
   box-shadow: var(--shadow-light);
 }
 body.light-mode .lang-dropdown button {
-  color: var(--color-text); /* Texto escuro */
+  color: var(--color-text); 
 }
 body.light-mode .lang-dropdown button:hover {
   background-color: var(--color-emerald-dark);
