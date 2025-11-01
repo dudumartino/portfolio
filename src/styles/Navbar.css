@@ -1,4 +1,4 @@
-/* src/styles/Navbar.css (CORRIGIDO PARA O LOGO) */
+/* src/styles/Navbar.css (REFEITO) */
 
 /* --- Base da Navbar --- */
 .navbar {
@@ -27,30 +27,21 @@
   gap: 1rem; 
 }
 
-/* --- Esquerda: Logo (AGORA UMA IMAGEM) --- */
+/* --- Esquerda: Logo --- */
 .logo {
-  /* Removemos os estilos de fonte */
-  /* font-size: 2.2rem; */
-  /* font-weight: 700; */
-  /* color: var(--color-emerald-light); */
-  
   cursor: pointer;
-  line-height: 1; /* Ajuda no alinhamento vertical */
+  line-height: 1; 
   flex-shrink: 0; 
 }
-
-/* --- NOVO: Estilo para a <img> do logo --- */
 .navbar-logo-img {
-  height: 46px; /* Altura do logo - AJUSTE AQUI SE QUISER MAIOR/MENOR */
-  width: auto; /* Largura automática para manter proporção */
-  display: block; /* Remove espaço extra de linha */
+  height: 36px; 
+  width: auto; 
+  display: block; 
   transition: filter 0.3s ease;
 }
 .navbar-logo-img:hover {
   filter: brightness(1.2) drop-shadow(0 0 5px var(--color-emerald-light));
 }
-/* --- FIM DO NOVO ESTILO --- */
-
 
 /* --- Centro: Links Desktop (Comentado) --- */
 /*
@@ -129,21 +120,24 @@
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-medium);
   padding: 0.5rem;
-  display: none; /* Escondido por padrão, aberto via JS no componente */
+  
+  /* --- CORREÇÃO AQUI --- */
+  /* A linha 'display: none;' foi REMOVIDA daqui. */
+  /* O React (isLangOpen) agora controla a exibição. */
+  
   flex-direction: column;
   gap: 0.25rem;
   z-index: 1010; 
   min-width: 160px; 
+  
+  /* Adiciona uma transição suave de fade in/out */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
-/* O seletor de idioma no Navbar.jsx controla o 'isLangOpen' que mostra/esconde */
-/* Este CSS é para o dropdown GERAL do menu, que está comentado */
-/*
-.menu-dropdown.open .lang-dropdown {
-   display: flex;
-}
-*/
-/* Se o dropdown de idioma não abrir, pode ser que falte o 'display: flex' quando aberto.
-   Mas a lógica no Navbar.jsx ( {isLangOpen && ( ... ) } ) deve tratar disso. */
+/* Se o React não estiver a renderizar o dropdown, ele não estará no DOM.
+   O código no Navbar.jsx {isLangOpen && ( ... )} trata disso. */
+
 
 .lang-dropdown button {
   background-color: transparent; color: white; padding: 0.5rem 1rem; border-radius: var(--border-radius-md); text-align: left; display: flex; align-items: center; gap: 0.75rem; transition: background-color 0.3s ease; font-size: 0.9rem; border: none; cursor: pointer;
@@ -170,10 +164,6 @@
 
 /* --- Media Query --- */
 @media (max-width: 768px) {
-  /* Reduz um pouco o logo no mobile */
-  .navbar-logo-img {
-    height: 32px;
-  }
   .cv-button-text {
     display: none;
   }
@@ -200,7 +190,7 @@ body.light-mode .navbar {
 }
 /*
 body.light-mode .navbar-center button { ... }
-body.light-mode .navbar-center button:hover { ... }
+body.light-score .navbar-center button:hover { ... }
 */
 
 /* Ações no modo claro */
