@@ -63,7 +63,7 @@ const Navbar = ({ onScrollTo }) => {
           {/* Botão Baixar CV */}
           <a
             // --- CORREÇÃO 2: LINK ATUALIZADO ---
-            href="https://firebasestorage.googleapis.com/v0/b/meu-portfollio.firebasestorage.app/o/CV-Eduardo-2025.2.pdf?alt=media&token=41536576-45fa-4158-b90b-ae8e6f61e6fb"
+            href="https://firebasestorage.googleapis.com/v0/b/meu-portfollio.firebasestorage.app/o/CV-Eduardo-2025.2.pdf?alt=media&token=fb2ee59b-6100-4b53-8f4f-aea43dc7ac59"
             target="_blank"
             rel="noopener noreferrer"
             className="navbar-action-button cv-button"
