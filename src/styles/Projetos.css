@@ -74,6 +74,7 @@
 
 .projeto-card-description {
   font-size: 0.95rem;
+  white-space: pre-line; /* respeita as quebras de linha da descrição */
   color: var(--color-text-faded); 
   margin-bottom: 1.5rem;
   flex-grow: 1; 

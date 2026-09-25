@@ -13,7 +13,7 @@ Site de página única com apresentação, trajetória profissional, habilidades
 - **Formulário de orçamento:** o visitante preenche nome, profissão ou nicho e o que precisa; ao enviar, abre o WhatsApp com a mensagem pronta. Os botões "Pedir orçamento" levam até ele.
 - **Três idiomas (pt / en / es):** detecção automática pelo navegador, com a escolha salva no `localStorage`. O idioma padrão é o português.
 - **Tema escuro/claro:** o escuro é o padrão; o botão 🌙/☀️ na navbar alterna para o claro.
-- **Projetos dinâmicos:** os cards de projeto vêm de uma coleção do **Cloud Firestore**, então adicionar ou editar um projeto não exige novo deploy.
+- **Projetos com duas fontes:** por padrão, os cards vêm de uma lista local (`src/data/projetos.js`), com textos em pt, en e es. Com `VITE_USE_FIREBASE=true`, passam a vir do **Cloud Firestore**.
 - **Currículo para download:** o botão da navbar abre o PDF hospedado no Firebase Storage.
 - **Animações** de entrada com Framer Motion.
 - **SEO:** título, descrição, Open Graph, dados estruturados (schema.org), `sitemap.xml` e `robots.txt`. Robôs de busca sempre veem a versão em português.
@@ -44,10 +44,12 @@ portfolio/
 │   │   ├── Servicos.jsx      # cards de serviços (lista SERVICES)
 │   │   ├── Sobre.jsx         # bio + linha do tempo de experiências
 │   │   ├── Skills.jsx        # soft skills + lista HARD_SKILLS
-│   │   ├── Projetos.jsx      # lê a coleção "projetos" do Firestore
+│   │   ├── Projetos.jsx      # lista local ou Firestore, conforme VITE_USE_FIREBASE
 │   │   └── Contato.jsx       # formulário de orçamento (WhatsApp) + redes sociais
 │   ├── styles/               # CSS de cada componente + App.css
 │   ├── utils/scrollToSection.js  # rolagem suave até uma seção
+│   ├── data/projetos.js      # lista local de projetos
+│   ├── config.js             # lê a flag VITE_USE_FIREBASE
 │   ├── locales/{pt,en,es}/translation.json
 │   ├── App.jsx               # monta as seções e o rodapé
 │   ├── firebaseConfig.js     # inicializa o Firebase a partir do .env
@@ -73,7 +75,7 @@ cp .env.example .env   # depois preencha com as credenciais do Firebase
 npm run dev            # abre em http://localhost:3000
 ```
 
-Sem o `.env` preenchido, o site funciona normalmente, mas a seção **Projetos** mostra uma mensagem de erro de configuração.
+Com `VITE_USE_FIREBASE=false` (padrão), as chaves do Firebase não são necessárias para rodar o site. Com `true` e sem as chaves, a seção **Projetos** mostra uma mensagem de erro de configuração.
 
 ### Variáveis de ambiente
 
@@ -87,6 +89,7 @@ Os valores ficam em **Firebase Console › Configurações do projeto › Seus a
 | `VITE_FIREBASE_STORAGE_BUCKET` | Bucket do Storage |
 | `VITE_FIREBASE_MESSAGING_SENDER_ID` | ID do remetente |
 | `VITE_FIREBASE_APP_ID` | ID do app web |
+| `VITE_USE_FIREBASE` | `true` para ler os projetos do Firestore; `false` (padrão) usa a lista local |
 
 > A configuração web do Firebase vai embutida no bundle do navegador, então ela não é secreta.
 > O que protege os dados são as **regras de segurança do Firestore**. Mantenha a coleção `projetos` como somente leitura para o público.
@@ -101,9 +104,14 @@ Os valores ficam em **Firebase Console › Configurações do projeto › Seus a
 
 ## Como editar o conteúdo
 
-### Projetos (Firestore)
+### Projetos
 
-Crie documentos na coleção **`projetos`**. A lista é ordenada pelo campo `order`, em ordem crescente.
+A fonte dos projetos é definida pela variável `VITE_USE_FIREBASE`. Localmente ela fica no `.env`. Em produção, fica na variável de repositório `VITE_USE_FIREBASE` do GitHub (Settings › Secrets and variables › Actions › **Variables**). O `.env` não vai para o servidor.
+
+- **`false` ou ausente (padrão):** edite o array `PROJETOS` em `src/data/projetos.js` e coloque as imagens em `public/projetos/`. Os campos `title` e `description` aceitam texto simples ou um objeto `{ pt, en, es }`. O SDK do Firebase nem é carregado nesse modo, e o site fica mais leve.
+- **`true`:** os projetos vêm da coleção **`projetos`** do Firestore, descrita abaixo.
+
+Nos dois modos, a lista é ordenada pelo campo `order`, em ordem crescente, e os campos são os mesmos:
 
 | Campo | Tipo | Uso |
 |-------|------|-----|
