@@ -1,5 +1,10 @@
 /* src/index.css */
+/* @import precisa vir antes de qualquer regra */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* --- Variáveis de Cor (MODO ESCURO - PADRÃO) --- */
 :root {
@@ -45,6 +50,11 @@ body.light-mode {
 /* --- FIM DA ATUALIZAÇÃO --- */
 
 
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -57,6 +67,7 @@ body {
   min-height: 100vh;
   scroll-behavior: smooth;
   overflow-x: hidden;
+  max-width: 100%;
   transition: background 0.3s, color 0.3s;
 }
 

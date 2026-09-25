@@ -20,9 +20,28 @@
   },
   "about": {
     "title": "Sobre Mim",
-    "p1": "Olá! Eu sou o Eduardo, um programador fullstack apaixonado por tecnologia. Atualmente, curso Ciência da Computação na PUC Minas, onde mergulho diariamente nos desafios e inovações que movem o mundo digital.",
-    "p2": "Minha especialidade é o desenvolvimento fullstack. Tenho conhecimentos e projetos sólidos na criação de soluções com React, JavaScript, HTML/CSS, .NET, Git entre outros.",
-    "p3": "Além do código, sou um grande entusiasta de jogos, séries, filmes e músicas. Acredito que essa imersão em boas histórias alimenta minha criatividade e minha capacidade de pensar \"fora da caixa\" para resolver problemas."
+    "p1": "Olá! Eu sou o Eduardo, um desenvolvedor Fullstack apaixonado por tecnologia e focado em construir soluções digitais de alto impacto.",
+    "p2": "Com background em Engenharia de Software, atuo no mercado desenvolvendo aplicações de ponta a ponta. Meu dia a dia envolve desde a criação de Landing Pages de alta conversão até o desenvolvimento de sistemas complexos, como ERPs, chatbots inteligentes integrados a APIs e soluções automatizadas utilizando Inteligência Artificial. Minhas principais ferramentas de trabalho para dar vida a esses projetos são o React e o Node.js.",
+    "p3": "Além das linhas de código, mantenho uma rotina ativa e equilibrada focado no lifestyle fitness, praticando musculação e corrida. Também sou um grande entusiasta de jogos, séries, filmes e música. Acredito fortemente que essa imersão em boas histórias e o cuidado com a mente e o corpo alimentam minha criatividade, me dando a energia necessária para pensar \"fora da caixa\" e resolver problemas complexos com eficiência.",
+    "timeline": {
+      "title": "Experiência",
+      "ob_period": "2018 — 2023",
+      "ob_role": "Office Boy",
+      "ob_company": "Escritório de Contabilidade",
+      "ob_desc": "Primeiro contato com o ambiente corporativo, desenvolvendo responsabilidade, organização e comunicação profissional.",
+      "cp_period": "2025 — 2026",
+      "cp_role": "Consultor de Projetos",
+      "cp_company": "Empresa Júnior de Consultoria",
+      "cp_desc": "Participação em projetos de consultoria empresarial na empresa júnior da faculdade, desenvolvendo visão estratégica e habilidades de gestão.",
+      "aw_period": "Jan 2026",
+      "aw_role": "Assistente de Desenvolvedor de Sistemas Web",
+      "aw_company": "",
+      "aw_desc": "Iniciação formal no desenvolvimento de sistemas web, colaborando em projetos reais e consolidando conhecimentos técnicos.",
+      "fs_period": "Fev 2026 — Presente",
+      "fs_role": "Desenvolvedor Fullstack",
+      "fs_company": "",
+      "fs_desc": "Desenvolvimento de aplicações completas de ponta a ponta, desde interfaces responsivas em React até back-ends robustos com Node.js."
+    }
   },
   "skills": {
     "title": "Skills",

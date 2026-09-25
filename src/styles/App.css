@@ -2,14 +2,19 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 /* O 'main' é o container para todas as seções */
 main {
-  flex-grow: 1; /* Faz o 'main' crescer para ocupar o espaço disponível */
+  flex-grow: 1;
   width: 100%;
-  max-width: 1200px; /* Limita a largura do conteúdo principal */
-  margin: 0 auto; /* Centraliza o 'main' */
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .app-footer {

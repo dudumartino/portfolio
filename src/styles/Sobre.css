@@ -1,60 +1,290 @@
 /* src/styles/Sobre.css */
+
 .sobre-section {
-  /* 1. ATUALIZADO: Usa a variável de fundo de card */
-  background-color: var(--color-card-bg); 
-  box-shadow: var(--shadow-light); /* Adiciona sombra no modo claro */
-  padding: 6rem 1rem;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  background-color: var(--color-card-bg);
+  padding: 6rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  transition: background-color 0.3s;
 }
 
-.sobre-container {
-  max-width: 800px;
+.sobre-inner {
+  width: 100%;
+  max-width: 960px;
   margin: 0 auto;
+}
+
+.sobre-header {
   text-align: center;
+  margin-bottom: 3rem;
 }
 
 .sobre-title {
   font-size: 2.8rem;
   font-weight: 700;
-  margin-bottom: 3rem;
-  color: var(--color-text); /* Usa variável */
+  color: var(--color-text);
+  margin: 0;
 }
 
-.sobre-content-box {
-  /* 2. ATUALIZADO: O fundo agora é transparente */
-  background-color: transparent; 
-  padding: 0; /* Remove padding desnecessário */
-  border-radius: 0;
-  box-shadow: none;
-  backdrop-filter: none;
-  text-align: left;
+.sobre-accent-line {
+  width: 3.5rem;
+  height: 4px;
+  border-radius: 999px;
+  background-color: var(--color-emerald-light);
+  margin: 0.75rem auto 0;
+}
+
+.sobre-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
 }
 
 .sobre-text {
-  font-size: 1.1rem;
-  color: var(--color-text-faded); /* Usa variável */
-  line-height: 1.8;
-  margin-bottom: 1.5rem; 
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--color-text-faded);
+  margin: 0;
 }
-.sobre-text:last-child {
+
+/* ── Experiência ─────────────────────────── */
+.exp-section {
+  width: 100%;
+}
+
+.exp-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 2.5rem;
+  text-align: center;
+}
+
+.exp-timeline {
+  position: relative;
+  width: 100%;
+}
+
+/* Linha vertical central */
+.exp-axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: var(--color-emerald-light);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.exp-axis-cap {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-emerald-light);
+  transform: translateX(-50%);
+}
+
+.exp-axis-cap--top    { top: 0; }
+.exp-axis-cap--bottom { bottom: 0; }
+
+/* Cada linha da timeline */
+.exp-row {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: center;
+  margin-bottom: 2.75rem;
+  position: relative;
+}
+
+.exp-row:last-child {
   margin-bottom: 0;
 }
 
-/* ... (Media queries não precisam mudar) ... */
-@media (max-width: 768px) {
-  .sobre-section { padding: 4rem 1rem; }
-  .sobre-title { font-size: 2.2rem; margin-bottom: 2rem; }
-  .sobre-text { font-size: 1rem; margin-bottom: 1rem; }
-}
-@media (max-width: 480px) {
-  .sobre-title { font-size: 1.8rem; }
+/* Conteúdo */
+.exp-content {
+  position: relative;
+  max-width: 100%;
 }
 
-/*
- ==========================================
- === ATUALIZAÇÃO PARA O MODO CLARO (FINAL) ===
- ==========================================
-*/
+.exp-content--left {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 1.75rem;
+}
+
+.exp-content--right {
+  grid-column: 3;
+  text-align: left;
+  padding-left: 1.75rem;
+}
+
+/* Ramo horizontal */
+.exp-content::after {
+  content: '';
+  position: absolute;
+  top: 1.1rem;
+  width: 28px;
+  height: 2px;
+  background-color: var(--color-emerald-light);
+}
+
+.exp-content--left::after  { right: -28px; }
+.exp-content--right::after { left: -28px; }
+
+/* Nó central */
+.exp-node-col {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.exp-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-gray-medium);
+  border: 2px solid var(--color-gray-medium);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.exp-node--active {
+  background-color: var(--color-emerald-light);
+  border-color: var(--color-emerald-light);
+  box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.2);
+}
+
+@keyframes exp-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50%       { transform: scale(2.2); opacity: 0; }
+}
+
+.exp-node-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background-color: var(--color-emerald-light);
+  animation: exp-pulse 2s ease-in-out infinite;
+}
+
+.exp-spacer {
+  display: block;
+}
+
+/* Tipografia dos itens */
+.exp-period {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-emerald-light);
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.exp-role {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 0.25rem;
+}
+
+.exp-company {
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--color-text-faded);
+  margin: 0 0 0.5rem;
+}
+
+.exp-desc {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--color-text-faded);
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .sobre-text,
+  .exp-period,
+  .exp-role,
+  .exp-company,
+  .exp-desc {
+    font-size: 1.15rem;
+  }
+}
+
+/* ── Mobile: linha à esquerda, conteúdo à direita ── */
+@media (max-width: 768px) {
+  .sobre-section { padding: 4rem 1rem; }
+  .sobre-title   { font-size: 2.2rem; }
+
+  .exp-axis {
+    left: 15px;
+    transform: none;
+  }
+
+  .exp-axis-cap {
+    left: 15px;
+    transform: translateX(-50%);
+  }
+
+  .exp-row {
+    grid-template-columns: 32px 1fr;
+    margin-bottom: 2rem;
+  }
+
+  .exp-node-col {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .exp-content--left,
+  .exp-content--right {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    padding-left: 1rem;
+    padding-right: 0;
+  }
+
+  .exp-content--left::after,
+  .exp-content--right::after {
+    left: -16px;
+    right: auto;
+    width: 16px;
+  }
+
+  .exp-spacer { display: none; }
+}
+
+@media (max-width: 480px) {
+  .sobre-title { font-size: 1.8rem; }
+
+  .sobre-text,
+  .exp-period,
+  .exp-role,
+  .exp-company,
+  .exp-desc {
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Modo Claro ──────────────────────────── */
 body.light-mode .sobre-section {
-  background-color: var(--color-card-bg); /* Fundo branco */
+  background-color: var(--color-card-bg);
+}
+
+body.light-mode .exp-node {
+  background-color: #9ca3af;
+  border-color: #9ca3af;
 }

@@ -20,9 +20,28 @@
   },
   "about": {
     "title": "About Me",
-    "p1": "Hi! I'm Eduardo, a fullstack developer deeply passionate about technology. I'm currently studying Computer Science at PUC Minas, a journey that allows me to dive daily into the challenges and innovations driving the digital world.",
-    "p2": "My specialty is fullstack development. I have solid knowledge and projects creating complete solutions, from building dynamic and responsive user interfaces with React, JavaScript, HTML/CSS, to developing efficient back-ends with the .NET platform. Git is a constant tool in my workflow, ensuring integrity and collaboration in every project.",
-    "p3": "Beyond code, I'm a big enthusiast of games, series, movies, and music. I believe that immersing myself in good stories and different art forms fuels my creativity and my ability to think \"outside the box\" to solve problems."
+    "p1": "Hi! I'm Eduardo, a Fullstack Developer passionate about technology and focused on building high-impact digital solutions.",
+    "p2": "With a background in Software Engineering, I work end-to-end developing applications. My day-to-day involves everything from building high-conversion Landing Pages to developing complex systems such as ERPs, intelligent chatbots integrated with APIs, and automated solutions leveraging Artificial Intelligence. My main tools to bring these projects to life are React and Node.js.",
+    "p3": "Beyond lines of code, I maintain an active and balanced routine with a fitness lifestyle, practicing weightlifting and running. I'm also a big enthusiast of games, series, movies, and music. I strongly believe that immersing myself in great stories and taking care of mind and body fuels my creativity, giving me the energy to think outside the box and solve complex problems efficiently.",
+    "timeline": {
+      "title": "Experience",
+      "ob_period": "2018 — 2023",
+      "ob_role": "Office Boy",
+      "ob_company": "Accounting Office",
+      "ob_desc": "First experience in the corporate environment, developing responsibility, organization, and professional communication skills.",
+      "cp_period": "2025 — 2026",
+      "cp_role": "Project Consultant",
+      "cp_company": "University Junior Consulting Firm",
+      "cp_desc": "Participated in business consulting projects at the university's junior enterprise, developing strategic vision and management skills.",
+      "aw_period": "Jan 2026",
+      "aw_role": "Web Systems Developer Assistant",
+      "aw_company": "",
+      "aw_desc": "Formal introduction to web systems development, collaborating on real-world projects and consolidating technical knowledge.",
+      "fs_period": "Feb 2026 — Present",
+      "fs_role": "Fullstack Developer",
+      "fs_company": "",
+      "fs_desc": "End-to-end application development, from responsive React interfaces to robust Node.js back-ends."
+    }
   },
   "skills": {
     "title": "Skills",

@@ -124,8 +124,9 @@
 .hard-skill-name {
   font-size: 0.9rem; 
   font-weight: 500;
-  white-space: nowrap; 
-  color: var(--color-text); /* Usa variável */
+  color: var(--color-text);
+  text-align: center;
+  word-break: break-word;
 }
 .hard-skill-icon-wrapper:hover {
   transform: translateY(-5px) scale(1.1); 
