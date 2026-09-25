@@ -20,12 +20,23 @@ const resources = {
   }
 };
 
+// Robôs de busca costumam rodar em inglês; força português para que o Google
+// indexe o conteúdo no idioma do público-alvo.
+const isBot = /bot|crawler|spider|crawling|slurp|lighthouse/i.test(navigator.userAgent);
+
+// Mantém o atributo lang do <html> em sincronia com o idioma escolhido
+// (registrado antes do init para pegar também o idioma inicial)
+i18n.on('languageChanged', (lng) => {
+  document.documentElement.lang = lng.startsWith('pt') ? 'pt-BR' : lng.split('-')[0];
+});
+
 i18n
   .use(LanguageDetector) // Detecta idioma do navegador
   .use(initReactI18next) // Passa i18n para react-i18next
   .init({
     resources,
     fallbackLng: 'pt', // Idioma padrão se a detecção falhar
+    ...(isBot && { lng: 'pt' }),
     
     // Configurações do detector de idioma (opcional, mas recomendado)
     detection: {

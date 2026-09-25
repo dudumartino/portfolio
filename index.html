@@ -1,43 +1,119 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    
-    <!-- --- FAVICON (O teu Logo) --- -->
-    <link rel="icon" href="/logo-em.png" />
-    <link rel="apple-touch-icon" href="/logo-em.png" />
-    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Atualizei a cor do tema para o verde do teu site -->
-    <meta name="theme-color" content="#3a5040" /> 
 
-    <!-- --- SEO PRINCIPAL (Para o Google) --- -->
-    <title>Eduardo Martino | Desenvolvedor Fullstack</title>
-    
+    <!-- SEO principal -->
+    <title>Desenvolvedor de Software em BH e Landing Pages | Eduardo Martino</title>
     <meta
       name="description"
-      content="Portfólio de Eduardo Martino. Desenvolvedor Fullstack especializado em React, .NET, JavaScript e soluções web modernas. Veja os meus projetos e entre em contacto."
+      content="Desenvolvedor de software em Belo Horizonte (BH). Criação de landing pages de alta conversão e configuração do Google Meu Negócio. Peça seu orçamento."
     />
-    
-    <meta name="keywords" content="Eduardo Martino, Desenvolvedor, Fullstack, React, .NET, Programador, Portfolio, Web Developer" />
     <meta name="author" content="Eduardo Martino" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://eduardomf.com/" />
 
-    <!-- --- REDES SOCIAIS (Open Graph - WhatsApp, LinkedIn, etc.) --- -->
-    <!-- Isto define o card bonito que aparece quando colas o link -->
-    <meta property="og:type" content="website" />
-    <!-- ATUALIZAÇÃO AQUI: URL oficial -->
-    <meta property="og:url" content="https://eduardomf.com/" />
-    <meta property="og:title" content="Eduardo Martino | Desenvolvedor Fullstack" />
-    <meta property="og:description" content="Transformo ideias em experiências digitais! Confira o meu portfólio com projetos em React e .NET." />
-    <meta property="og:image" content="https://eduardomf.com/logo-em.png" />
-
+    <!-- Ícones e tema -->
+    <link rel="icon" href="/logo-em.png" />
+    <link rel="apple-touch-icon" href="/logo-em.png" />
+    <meta name="theme-color" content="#3a5040" />
     <link rel="manifest" href="/manifest.json" />
+
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Eduardo Martino" />
+    <meta property="og:url" content="https://eduardomf.com/" />
+    <meta property="og:title" content="Eduardo Martino | Desenvolvedor de Software em BH" />
+    <meta property="og:description" content="Criação de landing pages de alta conversão e configuração do Google Meu Negócio. Desenvolvedor de software em Belo Horizonte." />
+    <meta property="og:image" content="https://eduardomf.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Eduardo Martino, desenvolvedor de software em Belo Horizonte" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Eduardo Martino | Desenvolvedor de Software em BH" />
+    <meta name="twitter:description" content="Criação de landing pages de alta conversão e configuração do Google Meu Negócio." />
+    <meta name="twitter:image" content="https://eduardomf.com/og-image.jpg" />
+
+    <!-- Dados estruturados (schema.org) para o Google entender quem é e o que oferece -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://eduardomf.com/#eduardo",
+            "name": "Eduardo Martino",
+            "url": "https://eduardomf.com/",
+            "image": "https://eduardomf.com/FotoEuElegante.jpeg",
+            "jobTitle": "Desenvolvedor de Software Fullstack",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Belo Horizonte",
+              "addressRegion": "MG",
+              "addressCountry": "BR"
+            },
+            "knowsAbout": ["Desenvolvimento de software", "Landing pages", "Google Meu Negócio", "React", "Node.js", ".NET", "JavaScript"],
+            "sameAs": [
+              "https://www.linkedin.com/in/eduardo-martino/",
+              "https://github.com/dudumartino"
+            ]
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://eduardomf.com/#servicos",
+            "name": "Eduardo Martino - Desenvolvimento de Software",
+            "url": "https://eduardomf.com/",
+            "image": "https://eduardomf.com/og-image.jpg",
+            "founder": { "@id": "https://eduardomf.com/#eduardo" },
+            "telephone": "+55-31-98726-3618",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Belo Horizonte",
+              "addressRegion": "MG",
+              "addressCountry": "BR"
+            },
+            "areaServed": [
+              { "@type": "City", "name": "Belo Horizonte" },
+              { "@type": "Country", "name": "Brasil" }
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Serviços",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criação de landing pages de alta conversão" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criação e configuração do Google Meu Negócio (Perfil da Empresa no Google)" } }
+              ]
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://eduardomf.com/#site",
+            "url": "https://eduardomf.com/",
+            "name": "Eduardo Martino",
+            "inLanguage": "pt-BR",
+            "publisher": { "@id": "https://eduardomf.com/#eduardo" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <noscript>Precisa de ativar o JavaScript para ver este site.</noscript>
-    
+    <noscript>
+      <h1>Eduardo Martino, desenvolvedor de software em Belo Horizonte</h1>
+      <p>Criação de landing pages de alta conversão e configuração do Google Meu Negócio.</p>
+      <p>
+        <a href="https://www.linkedin.com/in/eduardo-martino/">LinkedIn</a> ·
+        <a href="https://github.com/dudumartino">GitHub</a> ·
+        <a href="https://wa.me/5531987263618">WhatsApp</a>
+      </p>
+      <p>Ative o JavaScript para ver o portfólio completo.</p>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
-    
   </body>
 </html>
