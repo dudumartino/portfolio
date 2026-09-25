@@ -4,6 +4,24 @@ import { Users, Brain, MessageSquare, Kanban } from 'lucide-react';
 import '../styles/Skills.css';
 import { useTranslation } from 'react-i18next'; 
 
+// Ícones do devicon: https://devicon.dev
+const HARD_SKILLS = [
+  { name: 'React', icon: 'react/react-original' },
+  { name: 'Node.js', icon: 'nodejs/nodejs-original' },
+  { name: '.NET', icon: 'dot-net/dot-net-original' },
+  { name: 'JavaScript', icon: 'javascript/javascript-original' },
+  { name: 'HTML5', icon: 'html5/html5-original' },
+  { name: 'CSS3', icon: 'css3/css3-original' },
+  { name: 'Git', icon: 'git/git-original' },
+  { name: 'Python', icon: 'python/python-original' },
+  { name: 'Java', icon: 'java/java-original' },
+  { name: 'C#', icon: 'csharp/csharp-original' },
+  { name: 'C++', icon: 'cplusplus/cplusplus-original' },
+  { name: 'Figma', icon: 'figma/figma-original' },
+];
+
+const DEVICON_BASE = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
+
 const Skills = () => {
   const { t } = useTranslation(); 
 
@@ -44,19 +62,13 @@ const Skills = () => {
             <div className="hard-skills-box">
               <p className="hard-skills-intro">{t('skills.hardIntro')}</p> 
               <div className="hard-skills-icons">
-                  {/* Ícones (sem alteração) */}
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React Logo" className="hard-skill-img"/>} name="React" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js Logo" className="hard-skill-img"/>} name="Node.js" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg" alt=".NET Logo" className="hard-skill-img"/>} name=".NET" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript Logo" className="hard-skill-img"/>} name="JavaScript" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5 Logo" className="hard-skill-img"/>} name="HTML5" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3 Logo" className="hard-skill-img"/>} name="CSS3" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git Logo" className="hard-skill-img"/>} name="Git" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python Logo" className="hard-skill-img"/>} name="Python" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java Logo" className="hard-skill-img"/>} name="Java" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C# Logo" className="hard-skill-img"/>} name="C#" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++ Logo" className="hard-skill-img"/>} name="C++" />
-                  <HardSkillIcon icon={<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="Figma Logo" className="hard-skill-img"/>} name="Figma" />
+                {HARD_SKILLS.map(({ name, icon }) => (
+                  <HardSkillIcon
+                    key={name}
+                    name={name}
+                    icon={<img src={`${DEVICON_BASE}/${icon}.svg`} alt={`${name} Logo`} className="hard-skill-img" />}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -66,8 +78,6 @@ const Skills = () => {
   );
 };
 
-// --- CORREÇÃO AQUI ---
-// Código real dos componentes restaurado
 const SoftSkillCard = ({ icon, title, description }) => (
   <div className="soft-skill-card">
     <div className="soft-skill-icon">{icon}</div>
@@ -82,6 +92,5 @@ const HardSkillIcon = ({ icon, name }) => (
     <span className="hard-skill-name">{name}</span>
   </div>
 );
-// --- FIM DA CORREÇÃO ---
 
 export default Skills;

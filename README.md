@@ -1,2 +1,140 @@
-link do protfolio: https://eduardomf.com/
+# Portfólio — Eduardo Martino
 
+Portfólio pessoal de **Eduardo Martino**, desenvolvedor fullstack.
+Site de página única com apresentação, trajetória profissional, habilidades, projetos e contato, disponível em português, inglês e espanhol.
+
+🔗 **Online:** [eduardomf.com](https://eduardomf.com/)
+
+---
+
+## Funcionalidades
+
+- **Página única com seções:** Início, Sobre (bio + linha do tempo de experiências), Habilidades, Projetos e Contato.
+- **Três idiomas (pt / en / es):** detecção automática pelo navegador, com a escolha salva no `localStorage`. O idioma padrão é o português.
+- **Tema escuro/claro:** o escuro é o padrão; o botão 🌙/☀️ na navbar alterna para o claro.
+- **Projetos dinâmicos:** os cards de projeto vêm de uma coleção do **Cloud Firestore**, então adicionar ou editar um projeto não exige novo deploy.
+- **Currículo para download:** o botão da navbar abre o PDF hospedado no Firebase Storage.
+- **Animações** de entrada com Framer Motion.
+- **SEO e Open Graph** configurados em `public/index.html`.
+
+## Tecnologias
+
+| Área | Ferramentas |
+|------|-------------|
+| UI | React 19, CSS puro com variáveis (um arquivo por componente) |
+| Build | Create React App (`react-scripts` 5) via CRACO |
+| Dados | Firebase / Cloud Firestore |
+| i18n | i18next, react-i18next, i18next-browser-languagedetector |
+| Animação | Framer Motion |
+| Ícones | lucide-react, react-icons, [devicon](https://devicon.dev) (via CDN) |
+
+## Estrutura do projeto
+
+```
+portfolio/
+├── public/
+│   ├── index.html            # HTML base, meta tags de SEO e Open Graph
+│   ├── manifest.json
+│   ├── logo-em.png           # logo / favicon
+│   └── FotoEuElegante.jpeg   # foto da seção Início
+├── src/
+│   ├── components/           # uma seção do site por componente
+│   │   ├── Navbar.jsx        # logo, botão de CV, tema e idioma
+│   │   ├── Home.jsx
+│   │   ├── Sobre.jsx         # bio + linha do tempo de experiências
+│   │   ├── Skills.jsx        # soft skills + lista HARD_SKILLS
+│   │   ├── Projetos.jsx      # lê a coleção "projetos" do Firestore
+│   │   └── Contato.jsx       # LinkedIn, GitHub e WhatsApp
+│   ├── styles/               # CSS de cada componente + App.css
+│   ├── locales/{pt,en,es}/translation.json
+│   ├── App.jsx               # monta as seções e o rodapé
+│   ├── firebaseConfig.js     # inicializa o Firebase a partir do .env
+│   ├── i18n.js               # configuração do i18next
+│   ├── index.css             # fontes, variáveis de cor e tema claro
+│   └── index.js              # ponto de entrada
+├── craco.config.js           # plugins de PostCSS (Tailwind + Autoprefixer)
+├── tailwind.config.js
+└── .env.example              # variáveis de ambiente necessárias
+```
+
+## Como rodar localmente
+
+Pré-requisitos: **Node.js 18+** e npm.
+
+```bash
+git clone https://github.com/dudumartino/portfolio.git
+cd portfolio
+npm install
+cp .env.example .env   # depois preencha com as credenciais do Firebase
+npm start              # abre em http://localhost:3000
+```
+
+Sem o `.env` preenchido, o site funciona normalmente, mas a seção **Projetos** mostra uma mensagem de erro de configuração.
+
+### Variáveis de ambiente
+
+Os valores ficam em **Firebase Console › Configurações do projeto › Seus apps › App da Web**.
+
+| Variável | Descrição |
+|----------|-----------|
+| `REACT_APP_FIREBASE_API_KEY` | Chave da API web |
+| `REACT_APP_FIREBASE_AUTH_DOMAIN` | `<projeto>.firebaseapp.com` |
+| `REACT_APP_FIREBASE_PROJECT_ID` | ID do projeto |
+| `REACT_APP_FIREBASE_STORAGE_BUCKET` | Bucket do Storage |
+| `REACT_APP_FIREBASE_MESSAGING_SENDER_ID` | ID do remetente |
+| `REACT_APP_FIREBASE_APP_ID` | ID do app web |
+
+> A configuração web do Firebase vai embutida no bundle do navegador, então ela não é secreta.
+> O que protege os dados são as **regras de segurança do Firestore**. Mantenha a coleção `projetos` como somente leitura para o público.
+
+## Scripts
+
+| Comando | O que faz |
+|---------|-----------|
+| `npm start` | Servidor de desenvolvimento com hot reload |
+| `npm run build` | Build de produção na pasta `build/` |
+| `npm test` | Executa os testes com Jest (ainda não há testes) |
+
+## Como editar o conteúdo
+
+### Projetos (Firestore)
+
+Crie documentos na coleção **`projetos`**. A lista é ordenada pelo campo `order`, em ordem crescente.
+
+| Campo | Tipo | Uso |
+|-------|------|-----|
+| `title` | string | Título do card |
+| `description` | string | Texto do card |
+| `imageUrl` | string | URL da imagem de capa |
+| `liveLink` | string (opcional) | Botão "Saiba mais"; sem valor, o botão fica desativado |
+| `repoLink` | string (opcional) | Botão "Ver código"; sem valor, o botão fica desativado |
+| `order` | number | Posição do card na lista |
+
+### Textos e traduções
+
+Todo texto visível fica em `src/locales/<idioma>/translation.json`. Ao criar uma chave nova, adicione-a nos **três** arquivos.
+Para adicionar um idioma, crie uma pasta nova em `locales/`, registre o arquivo em `src/i18n.js` e inclua a opção no seletor da `Navbar.jsx`.
+
+### Experiências (seção Sobre)
+
+A linha do tempo é o array `timelineItems` em `src/components/Sobre.jsx`. Os textos usam as chaves `about.timeline.*` das traduções. Marque `current: true` no cargo atual para exibir o marcador animado.
+
+### Habilidades técnicas
+
+Edite o array `HARD_SKILLS` em `src/components/Skills.jsx`. O campo `icon` é o caminho do ícone no devicon, por exemplo `react/react-original`.
+
+### Currículo, foto e contato
+
+- **Link do CV:** atributo `href` do botão em `src/components/Navbar.jsx`.
+- **Foto:** substitua `public/FotoEuElegante.jpeg`.
+- **WhatsApp, LinkedIn e GitHub:** `src/components/Contato.jsx`.
+
+## Deploy
+
+`npm run build` gera arquivos estáticos em `build/`. Esses arquivos funcionam em qualquer hospedagem estática, como Firebase Hosting, Vercel ou Netlify.
+Lembre de configurar as variáveis `REACT_APP_FIREBASE_*` no ambiente de build, porque elas são embutidas durante o build.
+
+## Contato
+
+- LinkedIn: [eduardo-martino](https://www.linkedin.com/in/eduardo-martino/)
+- GitHub: [dudumartino](https://github.com/dudumartino)

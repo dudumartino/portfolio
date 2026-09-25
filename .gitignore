@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# env (valores reais ficam só local; ver .env.example)
+.env

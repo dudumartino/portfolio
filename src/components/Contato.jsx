@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'; // Importa
 const Contato = () => {
   const { t } = useTranslation(); // Usa
 
-  const seuNumero = "5531987263618"; // Lembre de trocar
+  const seuNumero = "5531987263618";
   const suaMensagem = t('contact.whatsappMessage'); // Usa t()
   const mensagemCodificada = encodeURIComponent(suaMensagem);
   const whatsappUrl = `https://wa.me/${seuNumero}?text=${mensagemCodificada}`;
@@ -19,9 +19,9 @@ const Contato = () => {
         <h2 className="contato-title">{t('contact.title')}</h2> {/* Usa t() */}
         <p className="contato-intro">{t('contact.intro')}</p> {/* Usa t() */}
         <div className="social-icons">
-          <a href="https://www.linkedin.com/in/eduardo-martino/" className="social-icon-link linkedin-icon"><Linkedin size={48} /></a>
-          <a href="https://github.com/dudumartino" className="social-icon-link github-icon"><Github size={48} /></a>
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="social-icon-link whatsapp-icon"><FaWhatsapp size={48} /></a>
+          <a href="https://www.linkedin.com/in/eduardo-martino/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="social-icon-link linkedin-icon"><Linkedin size={48} /></a>
+          <a href="https://github.com/dudumartino" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="social-icon-link github-icon"><Github size={48} /></a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="social-icon-link whatsapp-icon"><FaWhatsapp size={48} /></a>
         </div>
       </div>
     </section>

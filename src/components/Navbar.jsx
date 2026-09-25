@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// --- CORREÇÃO 1: Removemos 'Menu' e 'X' ---
 import { Download } from "lucide-react";
 import "../styles/Navbar.css";
 import { useTranslation } from "react-i18next";
@@ -7,12 +6,13 @@ import { useTranslation } from "react-i18next";
 const Navbar = ({ onScrollTo }) => {
   const { t, i18n } = useTranslation();
 
-  const [darkMode, setDarkMode] = useState(false);
+  // Tema padrão é escuro; true liga a classe "light-mode" no body
+  const [lightMode, setLightMode] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
 
   useEffect(() => {
-    document.body.className = darkMode ? "light-mode" : "";
-  }, [darkMode]);
+    document.body.className = lightMode ? "light-mode" : "";
+  }, [lightMode]);
 
   // Links de navegação (comentados caso você mude de ideia)
   /*
@@ -40,7 +40,7 @@ const Navbar = ({ onScrollTo }) => {
   };
 
   const handleThemeToggle = () => {
-    setDarkMode(!darkMode);
+    setLightMode(!lightMode);
   };
 
   return (
@@ -62,7 +62,6 @@ const Navbar = ({ onScrollTo }) => {
         <div className="navbar-actions-right">
           {/* Botão Baixar CV */}
           <a
-            // --- CORREÇÃO 2: LINK ATUALIZADO ---
             href="https://firebasestorage.googleapis.com/v0/b/meu-portfollio.firebasestorage.app/o/CV-Eduardo-2025.2.pdf?alt=media&token=fb2ee59b-6100-4b53-8f4f-aea43dc7ac59"
             target="_blank"
             rel="noopener noreferrer"
@@ -79,7 +78,7 @@ const Navbar = ({ onScrollTo }) => {
             onClick={handleThemeToggle}
             aria-label={t("navbar.theme")}
           >
-            {darkMode ? "☀️" : "🌙"}
+            {lightMode ? "☀️" : "🌙"}
           </button>
 
           {/* Seletor de Idioma */}
