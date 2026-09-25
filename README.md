@@ -14,7 +14,7 @@ Site de página única com apresentação, trajetória profissional, habilidades
 - **Três idiomas (pt / en / es):** detecção automática pelo navegador, com a escolha salva no `localStorage`. O idioma padrão é o português.
 - **Tema escuro/claro:** o escuro é o padrão; o botão 🌙/☀️ na navbar alterna para o claro.
 - **Projetos com duas fontes:** por padrão, os cards vêm de uma lista local (`src/data/projetos.js`), com textos em pt, en e es. Com `VITE_USE_FIREBASE=true`, passam a vir do **Cloud Firestore**.
-- **Currículo para download:** o botão da navbar abre o PDF hospedado no Firebase Storage.
+- **Currículo para download:** o botão da navbar baixa o CV em português quando o site está em pt, e o CV em inglês quando está em en ou es.
 - **Animações** de entrada com Framer Motion.
 - **SEO:** título, descrição, Open Graph, dados estruturados (schema.org), `sitemap.xml` e `robots.txt`. Robôs de busca sempre veem a versão em português.
 
@@ -147,7 +147,7 @@ Os cards vêm do array `SERVICES` em `src/components/Servicos.jsx`. Cada item us
 
 ### Currículo, foto e contato
 
-- **Link do CV:** atributo `href` do botão em `src/components/Navbar.jsx`.
+- **Currículo:** substitua `public/cv/curriculo.pdf` (português) e `public/cv/cv_english.pdf` (inglês), mantendo os nomes. A escolha por idioma fica em `cvFile`, em `src/components/Navbar.jsx`.
 - **Foto:** substitua `public/FotoEuElegante.jpeg`.
 - **LinkedIn e GitHub:** `src/components/Contato.jsx`.
 - **SEO:** tags e dados estruturados em `index.html`. Ao mudar os serviços, atualize também o `hasOfferCatalog` de lá.

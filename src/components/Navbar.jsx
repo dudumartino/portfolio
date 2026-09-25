@@ -39,6 +39,11 @@ const Navbar = ({ onScrollTo }) => {
     setIsLangOpen(false);
   };
 
+  // CV em português para pt; em inglês para en e es (arquivos em public/cv/)
+  const cvFile = i18n.language?.startsWith("pt")
+    ? "/cv/curriculo.pdf"
+    : "/cv/cv_english.pdf";
+
   const handleThemeToggle = () => {
     setLightMode(!lightMode);
   };
@@ -62,7 +67,8 @@ const Navbar = ({ onScrollTo }) => {
         <div className="navbar-actions-right">
           {/* Botão Baixar CV */}
           <a
-            href="https://firebasestorage.googleapis.com/v0/b/meu-portfollio.firebasestorage.app/o/CV-Eduardo-2025.2.pdf?alt=media&token=fb2ee59b-6100-4b53-8f4f-aea43dc7ac59"
+            href={cvFile}
+            download
             target="_blank"
             rel="noopener noreferrer"
             className="navbar-action-button cv-button"
