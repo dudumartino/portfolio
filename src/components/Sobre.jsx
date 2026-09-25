@@ -15,13 +15,22 @@ const fadeUp = {
 const Sobre = () => {
   const { t } = useTranslation();
 
+  // Ordem cronológica inversa: experiência atual no topo
   const timelineItems = [
     {
-      id: 'ob',
-      period: t('about.timeline.ob_period'),
-      role: t('about.timeline.ob_role'),
-      company: t('about.timeline.ob_company'),
-      desc: t('about.timeline.ob_desc'),
+      id: 'fs',
+      period: t('about.timeline.fs_period'),
+      role: t('about.timeline.fs_role'),
+      company: t('about.timeline.fs_company'),
+      desc: t('about.timeline.fs_desc'),
+      current: true,
+    },
+    {
+      id: 'aw',
+      period: t('about.timeline.aw_period'),
+      role: t('about.timeline.aw_role'),
+      company: t('about.timeline.aw_company'),
+      desc: t('about.timeline.aw_desc'),
       current: false,
     },
     {
@@ -33,20 +42,12 @@ const Sobre = () => {
       current: false,
     },
     {
-      id: 'aw',
-      period: t('about.timeline.aw_period'),
-      role: t('about.timeline.aw_role'),
-      company: t('about.timeline.aw_company'),
-      desc: t('about.timeline.aw_desc'),
+      id: 'ob',
+      period: t('about.timeline.ob_period'),
+      role: t('about.timeline.ob_role'),
+      company: t('about.timeline.ob_company'),
+      desc: t('about.timeline.ob_desc'),
       current: false,
-    },
-    {
-      id: 'fs',
-      period: t('about.timeline.fs_period'),
-      role: t('about.timeline.fs_role'),
-      company: t('about.timeline.fs_company'),
-      desc: t('about.timeline.fs_desc'),
-      current: true,
     },
   ];
 
