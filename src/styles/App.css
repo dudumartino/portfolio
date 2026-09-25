@@ -37,6 +37,7 @@ section {
   align-items: center;
   width: 100%; /* Ocupa toda a largura do 'main' */
   box-sizing: border-box; /* Inclui padding e borda na largura total */
+  scroll-margin-top: 80px; /* Compensa a navbar fixa ao rolar até a seção */
 }
 
 /* Título de seção padrão */

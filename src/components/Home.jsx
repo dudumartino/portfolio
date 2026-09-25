@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import '../styles/Home.css';
 import { useTranslation } from 'react-i18next';
+import { handleAnchorClick } from '../utils/scrollToSection';
 
 const Home = () => {
   const { t } = useTranslation();
@@ -21,6 +22,9 @@ const Home = () => {
             <span className="highlight">{t('home.description_part1')}</span>
             {t('home.description_part2')}
           </p>
+          <a href="#orcamento" className="home-cta-button" onClick={handleAnchorClick('orcamento')}>
+            {t('home.cta')}
+          </a>
         </div>
 
         <motion.div

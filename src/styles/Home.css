@@ -141,6 +141,7 @@
   font-weight: 600;
   transition: background-color 0.3s ease, transform 0.3s ease;
   display: inline-block; /* Necessário para comportar margin e padding corretamente */
+  text-decoration: none;
 }
 
 .home-cta-button:hover {

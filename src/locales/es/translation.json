@@ -16,7 +16,20 @@
     "greeting": "Soy",
     "name": "< Eduardo Martino />",
     "description_part1": "Desarrollador Fullstack",
-    "description_part2": ", ¡transformo ideas en experiencias digitales! Desarrollo sitios web modernos, con interfaces optimizadas y atractivas."
+    "description_part2": ", ¡transformo ideas en experiencias digitales! Desarrollo sitios web modernos, con interfaces optimizadas y atractivas.",
+    "cta": "Pedir presupuesto"
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Para profesionales y negocios en Belo Horizonte (BH) y en todo Brasil",
+    "landing_title": "Landing Pages de Alta Conversión",
+    "landing_desc": "Páginas enfocadas en convertir visitantes en clientes. Diseño persuasivo, carga rápida y llamadas a la acción estratégicas.",
+    "landing_b1": "Optimizada para Google y anuncios",
+    "landing_b2": "Integración con WhatsApp y formularios",
+    "gmb_title": "Creación y Configuración de Google Mi Negocio",
+    "gmb_desc": "Pongo tu negocio en el mapa de Google con un perfil completo: categorías correctas, fotos, horarios y contactos, para que los clientes de tu zona te encuentren.",
+    "gmb_b1": "Aparece en las búsquedas locales y en Google Maps",
+    "gmb_b2": "Perfil listo para recibir reseñas y contactos"
   },
   "about": {
     "title": "Sobre Mí",
@@ -73,5 +86,34 @@
     "title": "¡Conectémonos!",
     "intro": "Estoy disponible para nuevas oportunidades y colaboraciones.",
     "whatsappMessage": "Hola, vi tu portafolio y me gustaría una cotización para un proyecto."
+  },
+  "quote": {
+    "title": "Pide tu presupuesto",
+    "intro": "Cuéntame un poco sobre ti y lo que necesitas. El mensaje llega directo a mi WhatsApp.",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "profession": "Profesión o nicho",
+    "professionPlaceholder": "Selecciona una opción",
+    "professions": {
+      "lawyer": "Abogado(a)",
+      "psychologist": "Psicólogo(a)",
+      "physiotherapist": "Fisioterapeuta",
+      "doctor": "Médico(a)",
+      "dentist": "Dentista",
+      "nutritionist": "Nutricionista",
+      "personalTrainer": "Entrenador(a) personal",
+      "aesthetician": "Esteticista",
+      "architect": "Arquitecto(a)",
+      "accountant": "Contador(a)",
+      "realtor": "Agente inmobiliario",
+      "other": "Otro"
+    },
+    "other": "¿Cuál?",
+    "otherPlaceholder": "Escribe tu profesión o nicho",
+    "message": "¿Qué necesitas?",
+    "messagePlaceholder": "Ej.: necesito una landing page para mi despacho de abogados.",
+    "submit": "Enviar por WhatsApp",
+    "whatsappTemplate": "¡Hola, Eduardo! Vi tu sitio web y me gustaría un presupuesto.\n\n*Nombre:* {{name}}\n*Profesión/nicho:* {{profession}}\n*Lo que necesito:* {{message}}",
+    "social": "O encuéntrame en las redes:"
   }
 }

@@ -9,13 +9,14 @@ Site de página única com apresentação, trajetória profissional, habilidades
 
 ## Funcionalidades
 
-- **Página única com seções:** Início, Sobre (bio + linha do tempo de experiências), Habilidades, Projetos e Contato.
+- **Página única com seções:** Início, Serviços, Sobre (bio + linha do tempo de experiências), Habilidades, Projetos e Orçamento.
+- **Formulário de orçamento:** o visitante preenche nome, profissão ou nicho e o que precisa; ao enviar, abre o WhatsApp com a mensagem pronta. Os botões "Pedir orçamento" levam até ele.
 - **Três idiomas (pt / en / es):** detecção automática pelo navegador, com a escolha salva no `localStorage`. O idioma padrão é o português.
 - **Tema escuro/claro:** o escuro é o padrão; o botão 🌙/☀️ na navbar alterna para o claro.
 - **Projetos dinâmicos:** os cards de projeto vêm de uma coleção do **Cloud Firestore**, então adicionar ou editar um projeto não exige novo deploy.
 - **Currículo para download:** o botão da navbar abre o PDF hospedado no Firebase Storage.
 - **Animações** de entrada com Framer Motion.
-- **SEO e Open Graph** configurados em `public/index.html`.
+- **SEO:** título, descrição, Open Graph, dados estruturados (schema.org), `sitemap.xml` e `robots.txt`. Robôs de busca sempre veem a versão em português.
 
 ## Tecnologias
 
@@ -39,12 +40,14 @@ portfolio/
 ├── src/
 │   ├── components/           # uma seção do site por componente
 │   │   ├── Navbar.jsx        # logo, botão de CV, tema e idioma
-│   │   ├── Home.jsx
+│   │   ├── Home.jsx          # apresentação + botão "Pedir orçamento"
+│   │   ├── Servicos.jsx      # cards de serviços (lista SERVICES)
 │   │   ├── Sobre.jsx         # bio + linha do tempo de experiências
 │   │   ├── Skills.jsx        # soft skills + lista HARD_SKILLS
 │   │   ├── Projetos.jsx      # lê a coleção "projetos" do Firestore
-│   │   └── Contato.jsx       # LinkedIn, GitHub e WhatsApp
+│   │   └── Contato.jsx       # formulário de orçamento (WhatsApp) + redes sociais
 │   ├── styles/               # CSS de cada componente + App.css
+│   ├── utils/scrollToSection.js  # rolagem suave até uma seção
 │   ├── locales/{pt,en,es}/translation.json
 │   ├── App.jsx               # monta as seções e o rodapé
 │   ├── firebaseConfig.js     # inicializa o Firebase a partir do .env
@@ -124,11 +127,22 @@ A linha do tempo é o array `timelineItems` em `src/components/Sobre.jsx`. Os te
 
 Edite o array `HARD_SKILLS` em `src/components/Skills.jsx`. O campo `icon` é o caminho do ícone no devicon, por exemplo `react/react-original`.
 
+### Serviços
+
+Os cards vêm do array `SERVICES` em `src/components/Servicos.jsx`. Cada item usa as chaves `services.<chave>_title`, `_desc`, `_b1` e `_b2` das traduções.
+
+### Formulário de orçamento
+
+- **Opções do dropdown:** array `PROFESSIONS` em `src/components/Contato.jsx`, com os textos em `quote.professions`. Mantenha `other` por último: é ele que abre o campo livre.
+- **Texto da mensagem do WhatsApp:** chave `quote.whatsappTemplate`.
+- **Número do WhatsApp:** constante `WHATSAPP_NUMBER` em `src/components/Contato.jsx`.
+
 ### Currículo, foto e contato
 
 - **Link do CV:** atributo `href` do botão em `src/components/Navbar.jsx`.
 - **Foto:** substitua `public/FotoEuElegante.jpeg`.
-- **WhatsApp, LinkedIn e GitHub:** `src/components/Contato.jsx`.
+- **LinkedIn e GitHub:** `src/components/Contato.jsx`.
+- **SEO:** tags e dados estruturados em `index.html`. Ao mudar os serviços, atualize também o `hasOfferCatalog` de lá.
 
 ## Deploy
 

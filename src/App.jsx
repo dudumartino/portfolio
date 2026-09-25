@@ -2,10 +2,12 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import Servicos from "./components/Servicos";
 import Sobre from "./components/Sobre";
 import Skills from "./components/Skills";
 import Projetos from "./components/Projetos";
 import Contato from "./components/Contato";
+import { scrollToSection } from "./utils/scrollToSection";
 import "./styles/App.css"; // Importa o CSS para o layout principal
 
 /**
@@ -13,14 +15,6 @@ import "./styles/App.css"; // Importa o CSS para o layout principal
  * Renderiza a estrutura completa do portfólio.
  */
 export default function App() {
-  /**
-   * Função para rolar suavemente para uma seção específica.
-   * @param {string} id - O ID do elemento da seção para onde rolar.
-   */
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="app-container">
       {/* Passa a função de scroll para o Navbar */}
@@ -29,6 +23,7 @@ export default function App() {
       <main>
         {/* Cada seção é um componente separado */}
         <Home />
+        <Servicos />
         <Sobre />
         <Skills />
         <Projetos />
