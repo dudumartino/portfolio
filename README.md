@@ -22,7 +22,7 @@ Site de página única com apresentação, trajetória profissional, habilidades
 | Área | Ferramentas |
 |------|-------------|
 | UI | React 19, CSS puro com variáveis (um arquivo por componente) |
-| Build | Create React App (`react-scripts` 5) via CRACO |
+| Build | Vite, PostCSS (Tailwind CSS 3 + Autoprefixer) |
 | Dados | Firebase / Cloud Firestore |
 | i18n | i18next, react-i18next, i18next-browser-languagedetector |
 | Animação | Framer Motion |
@@ -33,7 +33,6 @@ Site de página única com apresentação, trajetória profissional, habilidades
 ```
 portfolio/
 ├── public/
-│   ├── index.html            # HTML base, meta tags de SEO e Open Graph
 │   ├── manifest.json
 │   ├── logo-em.png           # logo / favicon
 │   └── FotoEuElegante.jpeg   # foto da seção Início
@@ -51,22 +50,24 @@ portfolio/
 │   ├── firebaseConfig.js     # inicializa o Firebase a partir do .env
 │   ├── i18n.js               # configuração do i18next
 │   ├── index.css             # fontes, variáveis de cor e tema claro
-│   └── index.js              # ponto de entrada
-├── craco.config.js           # plugins de PostCSS (Tailwind + Autoprefixer)
-├── tailwind.config.js
+│   └── index.jsx             # ponto de entrada
+├── index.html                # HTML base, meta tags de SEO e Open Graph
+├── vite.config.js            # porta 3000, saída em build/
+├── postcss.config.js         # Tailwind + Autoprefixer
+├── tailwind.config.js        # preflight desligado para não conflitar com o CSS próprio
 └── .env.example              # variáveis de ambiente necessárias
 ```
 
 ## Como rodar localmente
 
-Pré-requisitos: **Node.js 18+** e npm.
+Pré-requisitos: **Node.js 20.19+ ou 22.12+** (exigência do Vite) e npm.
 
 ```bash
 git clone https://github.com/dudumartino/portfolio.git
 cd portfolio
 npm install
 cp .env.example .env   # depois preencha com as credenciais do Firebase
-npm start              # abre em http://localhost:3000
+npm run dev            # abre em http://localhost:3000
 ```
 
 Sem o `.env` preenchido, o site funciona normalmente, mas a seção **Projetos** mostra uma mensagem de erro de configuração.
@@ -77,12 +78,12 @@ Os valores ficam em **Firebase Console › Configurações do projeto › Seus a
 
 | Variável | Descrição |
 |----------|-----------|
-| `REACT_APP_FIREBASE_API_KEY` | Chave da API web |
-| `REACT_APP_FIREBASE_AUTH_DOMAIN` | `<projeto>.firebaseapp.com` |
-| `REACT_APP_FIREBASE_PROJECT_ID` | ID do projeto |
-| `REACT_APP_FIREBASE_STORAGE_BUCKET` | Bucket do Storage |
-| `REACT_APP_FIREBASE_MESSAGING_SENDER_ID` | ID do remetente |
-| `REACT_APP_FIREBASE_APP_ID` | ID do app web |
+| `VITE_FIREBASE_API_KEY` | Chave da API web |
+| `VITE_FIREBASE_AUTH_DOMAIN` | `<projeto>.firebaseapp.com` |
+| `VITE_FIREBASE_PROJECT_ID` | ID do projeto |
+| `VITE_FIREBASE_STORAGE_BUCKET` | Bucket do Storage |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | ID do remetente |
+| `VITE_FIREBASE_APP_ID` | ID do app web |
 
 > A configuração web do Firebase vai embutida no bundle do navegador, então ela não é secreta.
 > O que protege os dados são as **regras de segurança do Firestore**. Mantenha a coleção `projetos` como somente leitura para o público.
@@ -91,9 +92,9 @@ Os valores ficam em **Firebase Console › Configurações do projeto › Seus a
 
 | Comando | O que faz |
 |---------|-----------|
-| `npm start` | Servidor de desenvolvimento com hot reload |
+| `npm run dev` (ou `npm start`) | Servidor de desenvolvimento com hot reload |
 | `npm run build` | Build de produção na pasta `build/` |
-| `npm test` | Executa os testes com Jest (ainda não há testes) |
+| `npm run preview` | Serve o build de produção localmente para conferência |
 
 ## Como editar o conteúdo
 
@@ -132,7 +133,8 @@ Edite o array `HARD_SKILLS` em `src/components/Skills.jsx`. O campo `icon` é o 
 ## Deploy
 
 `npm run build` gera arquivos estáticos em `build/`. Esses arquivos funcionam em qualquer hospedagem estática, como Firebase Hosting, Vercel ou Netlify.
-Lembre de configurar as variáveis `REACT_APP_FIREBASE_*` no ambiente de build, porque elas são embutidas durante o build.
+Lembre de configurar as variáveis `VITE_FIREBASE_*` no ambiente de build, porque elas são embutidas durante o build.
+Só variáveis com prefixo `VITE_` chegam ao código do navegador.
 
 ## Contato
 
